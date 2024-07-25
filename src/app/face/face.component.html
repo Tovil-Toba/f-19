@@ -1,0 +1,28 @@
+<div class="relative">
+  <img
+    src="/assets/images/face/skin/Skin_{{ skinType }}.png"
+    class="w-full"
+    alt="Кожа"
+  />
+
+  <img
+    src="/assets/images/face/eyes/Eyes_1_{{ eyesColor }}.png"
+    class="absolute top-0 left-0 w-full"
+    alt="Глаза"
+  />
+
+  <img
+    src="/assets/images/face/hair/Hair_{{ hairType }}_{{ hairColor }}.png"
+    class="absolute top-0 left-0 w-full"
+    alt="Волосы"
+  />
+
+  <img
+    *ngIf="facialHairType"
+    src="/assets/images/face/facial-hair/Facial_Hair_{{ facialHairType }}_{{
+      hairColor
+    }}.png"
+    class="absolute top-0 left-0 w-full"
+    alt="Волосы на лице"
+  />
+</div>

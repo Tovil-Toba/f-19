@@ -1,0 +1,22 @@
+@if (isGameOver()) {
+  <app-game-over />
+}
+@else {
+  @switch (gameStep()) {
+    @case ("reward") {
+      <app-reward (upgradeSelect)="onUpgradeSelect($event)" />
+    }
+    @case ("mission") {
+      <app-mission (missionConfirm)="onMissionConfirm()" />
+    }
+    @case ("armament") {
+      <app-armament (armamentSelect)="onArmamentSelect()" />
+    }
+    @case ("mission-result") {
+      <app-mission-result />
+    }
+    @default {
+      <app-home-screen (gameStart)="onGameStart()" />
+    }
+  }
+}

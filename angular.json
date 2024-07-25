@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "race": {
+    "f-19": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/race",
+            "outputPath": "dist/f-19",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -30,7 +30,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/assets/css/themes/mdc-light-indigo/theme.scss",
+                "bundleName": "mdc-light-indigo",
+                "inject": false
+              },
+              {
+                "input": "src/assets/css/themes/mdc-dark-indigo/theme.scss",
+                "bundleName": "mdc-dark-indigo",
+                "inject": false
+              }
             ],
             "scripts": []
           },
@@ -62,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "race:build:production"
+              "buildTarget": "f-19:build:production"
             },
             "development": {
-              "buildTarget": "race:build:development"
+              "buildTarget": "f-19:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "race:build"
+            "buildTarget": "f-19:build"
           }
         },
         "test": {
@@ -94,8 +104,22 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

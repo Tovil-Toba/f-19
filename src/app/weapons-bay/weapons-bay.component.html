@@ -1,0 +1,29 @@
+<div class="card flex justify-content-center">
+  <p-dropdown
+    [options]="weapons"
+    [(ngModel)]="selectedWeapon"
+    placeholder="Выберите вооружение"
+    optionLabel="label"
+    [group]="true"
+  >
+    <ng-template pTemplate="selectedItem">
+      @if (selectedWeapon) {
+        <div class="flex align-items-center gap-2">
+          <i class="" [class]="selectedWeapon.icon"></i>
+          <div>{{ selectedWeapon.label }}</div>
+        </div>
+      }
+    </ng-template>
+    <ng-template let-group pTemplate="group">
+      <div class="flex align-items-center">
+        <span>{{ group.label }}</span>
+      </div>
+    </ng-template>
+    <ng-template let-weapon pTemplate="item">
+      <div class="flex align-items-center gap-2">
+        <i class="" [class]="weapon.icon"></i>
+        <div>{{ weapon.label }}</div>
+      </div>
+    </ng-template>
+  </p-dropdown>
+</div>

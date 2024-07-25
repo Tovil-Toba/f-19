@@ -1,0 +1,28 @@
+<div
+  class="flex flex-row p-2 cursor-pointer border-2 border-round"
+  [class.hover:surface-100]="!isActive"
+  [class.hover:bg-green-100]="isActive && upgrade.tier === 1"
+  [class.hover:bg-orange-100]="isActive && upgrade.tier === 2"
+  [class.hover:bg-red-100]="isActive && upgrade.tier === 3"
+  [class.border-transparent]="!isSelected"
+  [class.border-500]="!isActive && isSelected"
+  [class.border-green-500]="isActive && isSelected && upgrade.tier === 1"
+  [class.border-orange-500]="isActive && isSelected && upgrade.tier === 2"
+  [class.border-red-500]="isActive && isSelected && upgrade.tier === 3"
+  (click)="onClick()"
+>
+  <div
+    class="flex flex-shrink-0 w-3rem h-3rem border-2 border-round"
+    [class.text-green-200]="!isActive && upgrade.tier === 1"
+    [class.text-orange-200]="!isActive && upgrade.tier === 2"
+    [class.text-red-200]="!isActive && upgrade.tier === 3"
+    [class.text-green-500]="isActive && upgrade.tier === 1"
+    [class.text-orange-500]="isActive && upgrade.tier === 2"
+    [class.text-red-500]="isActive && upgrade.tier === 3"
+  >
+    <i class="text-4xl m-auto" [class]="upgrade.icon"></i>
+  </div>
+  <div class="flex align-items-center ml-2" [class.text-500]="!isActive">
+    {{ upgrade.name }}
+  </div>
+</div>

@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/primeng.min.css";
+@import "primeflex/primeflex.css";
+@import "primeicons/primeicons.css";
+
+body {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.border-radius {
+  border-radius: var(--border-radius);
+}
+
+.surface-a {
+  background-color: var(--surface-a);
+}
+
+.surface-b {
+  background-color: var(--surface-b);
+}
+
+.surface-c {
+  background-color: var(--surface-c);
+}
+
+.surface-d {
+  background-color: var(--surface-d);
+}
+
+.surface-e {
+  background-color: var(--surface-e);
+}
+
+.surface-f {
+  background-color: var(--surface-f);
+}
+
+.w-34rem {
+  width: 34rem !important;
+}
+
+@media screen and (min-width: 768px) {
+  .md\:w-34rem {
+    width: 34rem !important;
+  }
+}

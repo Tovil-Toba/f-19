@@ -1,0 +1,24 @@
+<h3>Миссия</h3>
+
+<div class="grid mb-3">
+  <div class="col-12 lg:col-8 relative">
+    <div>
+      <app-map [isGridEnabled]="isMapGridEnabled" />
+    </div>
+    <div class="flex align-items-center py-3">
+      <p-inputSwitch [(ngModel)]="isMapGridEnabled" />
+      <span class="ml-2">Сетка</span>
+    </div>
+  </div>
+  <div class="col-12 lg:col-4">
+    Описание миссии
+    <ul>
+      <li>Основная цель</li>
+      <li>Дополнительная цель</li>
+    </ul>
+
+    <div class="flex w-full justify-content-end">
+      <p-button label="Далее" (click)="onMissionConfirm()" />
+    </div>
+  </div>
+</div>

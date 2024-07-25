@@ -1,0 +1,14 @@
+.aspect-ratio-1 {
+  aspect-ratio: 1
+}
+
+.border-05 {
+  border: 0.5px solid;
+}
+
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+
+}

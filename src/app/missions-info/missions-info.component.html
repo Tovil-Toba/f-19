@@ -1,0 +1,51 @@
+<div
+  class="surface-a border-1 border-radius px-3 py-1"
+  [class.border-100]="isDarkTheme()"
+  [class.border-300]="!isDarkTheme()"
+>
+  <span
+    >Миссий завершено:
+    <span class="font-medium">{{ completedMissionsCount() }}</span></span
+  >
+
+  <ng-container *ngTemplateOutlet="divider"></ng-container>
+
+  <span
+    >Текущая миссия:
+    <span class="font-medium">{{ currentMissionNumber() }}</span>
+  </span>
+
+  <ng-container *ngTemplateOutlet="divider"></ng-container>
+
+  <span
+    >Тип миссии:
+    <span
+      class="font-medium"
+      [class.text-green-600]="!isBossMission()"
+      [class.text-red-600]="isBossMission()"
+      >{{ isBossMission() ? "босс" : "обычная" }}</span
+    >
+  </span>
+
+  <ng-container *ngTemplateOutlet="divider"></ng-container>
+
+  <span
+    >Эпизод:
+    <span
+      class="font-medium"
+      [class.text-green-600]="currentMissionTier() === 1"
+      [class.text-orange-600]="currentMissionTier() === 2"
+      [class.text-red-600]="currentMissionTier() >= 3"
+      >{{ currentMissionTier() }}</span
+    >
+  </span>
+</div>
+
+<ng-template #divider>
+  <span
+    class="mx-2"
+    [class.text-100]="isDarkTheme()"
+    [class.text-300]="!isDarkTheme()"
+    >|</span
+  >
+</ng-template>

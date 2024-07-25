@@ -1,0 +1,31 @@
+<div class="grid grid-nogutter mb-3">
+  <div class="col-12 lg:col-4">
+    <app-upgrades-group
+      [group]="'plane'"
+      [isUpgradesActive]="isUpgradesActive"
+      [selectedUpgrade]="selectedUpgrade"
+      [upgrades]="upgrades"
+      (upgradeClick)="onUpgradeClick($event)"
+    />
+  </div>
+
+  <div class="col-12 lg:col-4">
+    <app-upgrades-group
+      [group]="'weapon'"
+      [isUpgradesActive]="isUpgradesActive"
+      [selectedUpgrade]="selectedUpgrade"
+      [upgrades]="upgrades"
+      (upgradeClick)="onUpgradeClick($event)"
+    />
+  </div>
+
+  <div class="col-12 lg:col-4">
+    <app-upgrades-group
+      [group]="'pilot'"
+      [isUpgradesActive]="isUpgradesActive"
+      [selectedUpgrade]="selectedUpgrade"
+      [upgrades]="upgrades"
+      (upgradeClick)="onUpgradeClick($event)"
+    />
+  </div>
+</div>

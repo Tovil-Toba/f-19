@@ -1,0 +1,26 @@
+<div class="flex flex-column h-full">
+  <h3>Вооружение</h3>
+
+  <div
+    class="w-full m-auto justify-content-center align-items-center w-17rem md:w-34rem"
+  >
+    <div class="grid grid-nogutter border-1">
+      <div class="col-12 md:col-6 border-1 p-3">
+        <app-weapons-bay />
+      </div>
+      <div class="col-12 md:col-6 border-1 p-3">
+        <app-weapons-bay />
+      </div>
+      <div class="col-12 md:col-6 border-1 p-3">
+        <app-weapons-bay />
+      </div>
+      <div class="col-12 md:col-6 border-1 p-3">
+        <app-weapons-bay />
+      </div>
+    </div>
+  </div>
+
+  <div class="flex w-full justify-content-end mb-3">
+    <p-button label="Далее" (click)="onArmamentSelect()" />
+  </div>
+</div>

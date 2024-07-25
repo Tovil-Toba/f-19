@@ -1,0 +1,12 @@
+<h3 class="my-3 mx-2">{{ title }}</h3>
+
+<div class="flex flex-column w-full">
+  @for (upgrade of upgrades; track upgrade.name) {
+    <app-upgrade
+      [upgrade]="upgrade"
+      [isActive]="isUpgradesActive || isUpgradeActive(upgrade)"
+      [isSelected]="upgrade.name === selectedUpgrade?.name"
+      (click)="onUpgradeClick(upgrade)"
+    />
+  }
+</div>

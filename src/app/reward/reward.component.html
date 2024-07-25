@@ -1,0 +1,21 @@
+<div class="flex w-full h-full">
+  <h3>Награда</h3>
+
+  <p-card header="Выберите награду" styleClass="my-3" class="m-auto w-10">
+    <app-upgrades
+      [isUpgradesActive]="true"
+      [upgrades]="randomUpgrades"
+      (upgradeClick)="onUpgradeClick($event)"
+    />
+
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-end">
+        <p-button
+          label="Далее"
+          [disabled]="!selectedUpgrade"
+          (click)="onUpgradeSelect()"
+        />
+      </div>
+    </ng-template>
+  </p-card>
+</div>

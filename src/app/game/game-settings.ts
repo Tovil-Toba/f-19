@@ -1,0 +1,3 @@
+export const COMPLETED_STANDARD_MISSIONS_INTERVAL = 3;
+export const MAX_MISSION_TIER = 3;
+export const TOTAL_MISSIONS_COUNT = 12;

@@ -1,0 +1,36 @@
+<p-menubar [model]="menuItems" class="block">
+  <ng-template pTemplate="item" let-item>
+    @if (item.route) {
+      <a [routerLink]="item.route" class="p-menuitem-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    } @else {
+      @if (item.url) {
+        <a
+          [href]="item.url"
+          class="p-menuitem-link"
+        >
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+        </a>
+      } @else {
+        <div class="p-menuitem-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+          <span class="pi pi-fw pi-angle-down ml-2"></span>
+        </div>
+      }
+    }
+  </ng-template>
+
+  <ng-template pTemplate="end">
+    <p-button
+      [icon]="isDarkTheme() ? 'fa-solid fa-moon' : 'fa-solid fa-sun-bright'"
+      [rounded]="true"
+      [text]="true"
+      [severity]="isDarkTheme() ? 'info' : 'warning'"
+      (click)="toggleTheme()"
+    ></p-button>
+  </ng-template>
+</p-menubar>
