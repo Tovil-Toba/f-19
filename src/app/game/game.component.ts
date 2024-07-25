@@ -31,7 +31,6 @@ export class GameComponent {
   readonly gameStep: Signal<GameStep | undefined> = this._gameService.gameStep;
   readonly isGameOver: Signal<boolean> = this._gameService.isGameOver;
 
-  isGameStarted = false;
   isMissionConfirmed = false;
   selectedUpgrade?: Upgrade;
 
@@ -45,9 +44,7 @@ export class GameComponent {
   }
 
   onGameStart(): void {
-    this.isGameStarted = true;
     this._gameService.startGame();
-    this._gameService.nextGameStep();
   }
 
   onMissionConfirm(): void {
@@ -63,9 +60,5 @@ export class GameComponent {
     }
 
     this._gameService.nextGameStep();
-  }
-
-  startGame(): void {
-    this.isGameStarted = true;
   }
 }

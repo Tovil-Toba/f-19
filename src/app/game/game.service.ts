@@ -69,6 +69,7 @@ export class GameService {
 
   startGame(): void {
     this._isGameStarted.set(true);
+    this.nextGameStep();
   }
 
   private _checkIsNewCycle(): void {
