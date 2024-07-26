@@ -1,10 +1,12 @@
+import { WeaponType } from '../weapons-bay/weapon-type.model';
 import { TargetType } from './target-type.model';
 
 export interface Target {
-  id: string;
   icon: string;
+  id: string;
   isBoss?: boolean;
   squareIndex?: number;
   tier?: number;
   type: TargetType;
+  weaponType?: WeaponType;
 }
