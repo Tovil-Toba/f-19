@@ -28,7 +28,7 @@ export const BOSSES: Target[] = [
   {
     id: 'command-aircraft',
     icon: 'fa-solid fa-plane-engines',
-    label: 'воздушный командный пункт',
+    label: 'Воздушный командный пункт',
     type: 'air',
     tier: 2,
     weaponType: 'AIM-54 Phoenix',
