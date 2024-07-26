@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 
-import { MapService } from '../map/map.service';
+import { MissionService } from '../mission/mission.service';
 import { WeaponType } from '../weapons-bay/weapon-type.model';
 import { WeaponsBayComponent } from '../weapons-bay/weapons-bay.component';
 
@@ -29,7 +29,7 @@ export class ArmamentComponent {
     'AIM-7 Sparrow',
   ];
 
-  constructor(private readonly _mapService: MapService) {
+  constructor(private readonly _missionService: MissionService) {
     this._initDefaultWeaponTypes();
   }
 
@@ -38,12 +38,15 @@ export class ArmamentComponent {
   }
 
   private _initDefaultWeaponTypes(): void {
-    if (this._mapService.boss) {
-      this.defaultWeaponTypes[0] = this._mapService.boss.weaponType;
-      this.defaultWeaponTypes[1] = this._mapService.boss.weaponType;
+    if (this._missionService.boss) {
+      this.defaultWeaponTypes[0] = this._missionService.boss.weaponType;
+      this.defaultWeaponTypes[1] = this._missionService.boss.weaponType;
     } else {
-      this.defaultWeaponTypes[0] = this._mapService.primaryTarget?.weaponType;
-      this.defaultWeaponTypes[1] = this._mapService.secondaryTarget?.weaponType;
+      this.defaultWeaponTypes[0] =
+        this._missionService.primaryTarget?.weaponType;
+
+      this.defaultWeaponTypes[1] =
+        this._missionService.secondaryTarget?.weaponType;
     }
   }
 }

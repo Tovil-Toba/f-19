@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { GameService } from '../game/game.service';
+import { LAND_SQUARES_INDEXES } from '../map/land-squares-indexes';
+import { PLAYER_SQUARES_INDEXES } from '../map/player-squares-indexes';
+import { SEA_SQUARES_INDEXES } from '../map/sea-squares-indexes';
 import { BOSSES } from './bosses';
-import { LAND_SQUARES_INDEXES } from './land-squares-indexes';
 import { PLAYER } from './player';
-import { PLAYER_SQUARES_INDEXES } from './player-squares-indexes';
 import { PRIMARY_TARGETS } from './primary-targets';
-import { SEA_SQUARES_INDEXES } from './sea-squares-indexes';
 import { SECONDARY_TARGETS } from './secondary-targets';
 import { Target } from './target.model';
 import { TargetType } from './target-type.model';
@@ -14,8 +14,7 @@ import { TargetType } from './target-type.model';
 @Injectable({
   providedIn: 'root',
 })
-export class MapService {
-  // todo: Вынести в папку target все, что с целями связано
+export class MissionService {
   boss?: Target;
   player?: Target;
   primaryTarget?: Target;

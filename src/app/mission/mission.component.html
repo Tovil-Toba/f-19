@@ -3,7 +3,13 @@
 <div class="grid mb-3">
   <div class="col-12 lg:col-8 relative">
     <div>
-      <app-map [isGridEnabled]="isMapGridEnabled" />
+      <app-map
+        [boss]="boss"
+        [player]="player"
+        [primaryTarget]="primaryTarget"
+        [secondaryTarget]="secondaryTarget"
+        [isGridEnabled]="isMapGridEnabled"
+      />
     </div>
     <div class="flex align-items-center py-3">
       <p-inputSwitch [(ngModel)]="isMapGridEnabled" />
