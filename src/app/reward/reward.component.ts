@@ -1,19 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   output,
   OutputEmitterRef,
 } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
+import { GameService } from '../game/game.service';
 import { UpgradeComponent } from '../upgrade/upgrade.component';
 import { Upgrade } from '../upgrade/upgrade.model';
-import { UPGRADES } from '../upgrades/upgrades';
 import { UpgradesComponent } from '../upgrades/upgrades.component';
-import { UpgradesService } from '../upgrades/upgrades.service';
-import { UpgradeGroup } from '../upgrades-group/upgrade-group.model';
+import { RewardService } from './reward.service';
 
 @Component({
   selector: 'app-reward',
@@ -22,7 +20,7 @@ import { UpgradeGroup } from '../upgrades-group/upgrade-group.model';
   templateUrl: './reward.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RewardComponent implements OnInit {
+export class RewardComponent {
   upgradeSelect: OutputEmitterRef<Upgrade | undefined> = output<
     Upgrade | undefined
   >();
@@ -30,10 +28,11 @@ export class RewardComponent implements OnInit {
   randomUpgrades: Upgrade[] = [];
   selectedUpgrade?: Upgrade;
 
-  constructor(private readonly _upgradesService: UpgradesService) {}
-
-  ngOnInit(): void {
-    this.randomUpgrades = this._getRandomUpgrades(3);
+  constructor(
+    private readonly _gameService: GameService,
+    private readonly _rewardService: RewardService,
+  ) {
+    this._init();
   }
 
   onUpgradeSelect(): void {
@@ -44,53 +43,14 @@ export class RewardComponent implements OnInit {
     this.selectedUpgrade = upgrade;
   }
 
-  private _getRandomUpgrade(
-    group: UpgradeGroup,
-    maxTier = 1,
-  ): Upgrade | undefined {
-    const upgrades: Upgrade[] = UPGRADES.filter(
-      (upgrade: Upgrade) =>
-        !this._upgradesService.selectedUpgrades.has(upgrade) &&
-        upgrade.group === group &&
-        upgrade.tier <= maxTier,
-    );
-    const shuffledUpgrades: Upgrade[] = upgrades.sort(
-      () => 0.5 - Math.random(),
-    );
-
-    return shuffledUpgrades[0];
-  }
-
-  private _getRandomUpgrades(maxTier = 1): Upgrade[] {
-    const randomUpgrades: Upgrade[] = [];
-
-    const planeRandomUpgrade: Upgrade | undefined = this._getRandomUpgrade(
-      'plane',
-      maxTier,
-    );
-
-    const weaponRandomUpgrade: Upgrade | undefined = this._getRandomUpgrade(
-      'weapon',
-      maxTier,
-    );
-
-    const pilotRandomUpgrade: Upgrade | undefined = this._getRandomUpgrade(
-      'pilot',
-      maxTier,
-    );
-
-    if (planeRandomUpgrade) {
-      randomUpgrades.push(planeRandomUpgrade);
+  private _init(): void {
+    if (
+      this._rewardService.missionNumber !==
+      this._gameService.currentMissionNumber()
+    ) {
+      this._rewardService.init();
     }
 
-    if (weaponRandomUpgrade) {
-      randomUpgrades.push(weaponRandomUpgrade);
-    }
-
-    if (pilotRandomUpgrade) {
-      randomUpgrades.push(pilotRandomUpgrade);
-    }
-
-    return randomUpgrades;
+    this.randomUpgrades = this._rewardService.randomUpgrades;
   }
 }

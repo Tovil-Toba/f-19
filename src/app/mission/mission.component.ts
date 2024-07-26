@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   output,
   OutputEmitterRef,
 } from '@angular/core';
@@ -21,7 +20,7 @@ import { Target } from './target.model';
   templateUrl: './mission.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MissionComponent implements OnInit {
+export class MissionComponent {
   isMapGridEnabled = true;
   missionConfirm: OutputEmitterRef<void> = output<void>();
   boss?: Target;
@@ -32,9 +31,15 @@ export class MissionComponent implements OnInit {
   constructor(
     private readonly _gameService: GameService,
     private readonly _missionService: MissionService,
-  ) {}
+  ) {
+    this._init();
+  }
 
-  ngOnInit(): void {
+  onMissionConfirm(): void {
+    this.missionConfirm.emit();
+  }
+
+  private _init(): void {
     if (
       this._missionService.missionNumber !==
       this._gameService.currentMissionNumber()
@@ -46,9 +51,5 @@ export class MissionComponent implements OnInit {
     this.player = this._missionService.player;
     this.primaryTarget = this._missionService.primaryTarget;
     this.secondaryTarget = this._missionService.secondaryTarget;
-  }
-
-  onMissionConfirm(): void {
-    this.missionConfirm.emit();
   }
 }

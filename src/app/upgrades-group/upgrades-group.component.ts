@@ -7,10 +7,10 @@ import {
   OutputEmitterRef,
 } from '@angular/core';
 
+import { RewardService } from '../reward/reward.service';
 import { UpgradeComponent } from '../upgrade/upgrade.component';
 import { Upgrade } from '../upgrade/upgrade.model';
 import { UPGRADES } from '../upgrades/upgrades';
-import { UpgradesService } from '../upgrades/upgrades.service';
 import { UpgradeGroup } from './upgrade-group.model';
 import { UPGRADE_GROUP_TITLE } from './upgrade-group-title';
 
@@ -34,14 +34,14 @@ export class UpgradesGroupComponent implements OnInit {
   @Input()
   upgrades?: Upgrade[];
 
-  selectedUpgrades: Set<Upgrade> = this._upgradesService.selectedUpgrades;
+  selectedUpgrades: Set<Upgrade> = this._rewardService.selectedUpgrades;
   title = '';
   upgradeClick: OutputEmitterRef<Upgrade> = output<Upgrade>();
 
-  constructor(private readonly _upgradesService: UpgradesService) {}
+  constructor(private readonly _rewardService: RewardService) {}
 
   isUpgradeActive(upgrade: Upgrade): boolean {
-    return this._upgradesService.selectedUpgrades.has(upgrade);
+    return this._rewardService.selectedUpgrades.has(upgrade);
   }
 
   ngOnInit(): void {

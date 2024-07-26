@@ -6,9 +6,9 @@ import { HomeScreenComponent } from '../home-screen/home-screen.component';
 import { MissionComponent } from '../mission/mission.component';
 import { MissionResultComponent } from '../mission-result/mission-result.component';
 import { RewardComponent } from '../reward/reward.component';
+import { RewardService } from '../reward/reward.service';
 import { UpgradeComponent } from '../upgrade/upgrade.component';
 import { Upgrade } from '../upgrade/upgrade.model';
-import { UpgradesService } from '../upgrades/upgrades.service';
 import { GameService } from './game.service';
 import { GameStep } from './game-step.model';
 
@@ -36,7 +36,7 @@ export class GameComponent {
 
   constructor(
     private readonly _gameService: GameService,
-    private readonly _upgradesService: UpgradesService,
+    private readonly _rewardService: RewardService,
   ) {}
 
   onArmamentSelect(): void {
@@ -56,7 +56,7 @@ export class GameComponent {
     this.selectedUpgrade = upgrade;
 
     if (upgrade) {
-      this._upgradesService.selectedUpgrades.add(upgrade);
+      this._rewardService.selectedUpgrades.add(upgrade);
     }
 
     this._gameService.nextGameStep();
