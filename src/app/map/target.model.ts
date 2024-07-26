@@ -5,6 +5,7 @@ export interface Target {
   icon: string;
   id: string;
   isBoss?: boolean;
+  label?: string;
   squareIndex?: number;
   tier?: number;
   type: TargetType;

@@ -12,9 +12,29 @@
   </div>
   <div class="col-12 lg:col-4">
     Описание миссии
+
     <ul>
-      <li>Основная цель</li>
-      <li>Дополнительная цель</li>
+      @if (boss) {
+        <li>
+          Босс: <span class="font-medium text-red-600">{{ boss.label }}</span>
+        </li>
+      }
+      @if (primaryTarget) {
+        <li>
+          Основная цель:
+          <span class="font-medium text-red-600">{{
+            primaryTarget.label
+          }}</span>
+        </li>
+      }
+      @if (secondaryTarget) {
+        <li>
+          Дополнительная цель:
+          <span class="font-medium text-orange-600">{{
+            secondaryTarget.label
+          }}</span>
+        </li>
+      }
     </ul>
 
     <div class="flex w-full justify-content-end">
