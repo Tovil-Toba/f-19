@@ -10,8 +10,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 
 import { GameService } from '../game/game.service';
 import { MapComponent } from '../map/map.component';
+import { Mission } from './mission.model';
 import { MissionService } from './mission.service';
-import { Target } from './target.model';
 
 @Component({
   selector: 'app-mission',
@@ -22,11 +22,8 @@ import { Target } from './target.model';
 })
 export class MissionComponent {
   isMapGridEnabled = true;
+  mission?: Mission;
   missionConfirm: OutputEmitterRef<void> = output<void>();
-  boss?: Target;
-  player?: Target;
-  primaryTarget?: Target;
-  secondaryTarget?: Target;
 
   constructor(
     private readonly _gameService: GameService,
@@ -47,9 +44,6 @@ export class MissionComponent {
       this._missionService.init();
     }
 
-    this.boss = this._missionService.boss;
-    this.player = this._missionService.player;
-    this.primaryTarget = this._missionService.primaryTarget;
-    this.secondaryTarget = this._missionService.secondaryTarget;
+    this.mission = this._missionService.mission();
   }
 }

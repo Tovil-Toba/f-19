@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { Target } from '../mission/target.model';
+import { Mission } from '../mission/mission.model';
 import { AVAILABLE_SQUARES_INDEXES } from './available-squares-indexes';
 
 @Component({
@@ -16,20 +16,14 @@ export class MapComponent {
   readonly squaresIndexes: number[] = [...Array(this.squaresCount).keys()];
 
   @Input()
-  boss?: Target;
-
-  @Input()
   isAvailableSquaresHighlighted = false;
 
   @Input()
   isGridEnabled = true;
 
   @Input()
-  player?: Target;
+  isSmall = false;
 
   @Input()
-  primaryTarget?: Target;
-
-  @Input()
-  secondaryTarget?: Target;
+  mission?: Mission;
 }

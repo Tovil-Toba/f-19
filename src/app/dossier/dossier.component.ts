@@ -13,9 +13,16 @@ import { DossierService } from './dossier.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DossierComponent {
+  readonly airTargetsDestroyed = this._dossierService.getAirTargetsDestroyed();
   readonly face: Face = this._faceService.face;
   readonly firstName = this._dossierService.firstName;
+  readonly isAce = this._dossierService.isAce;
+
+  readonly landTargetsDestroyed =
+    this._dossierService.getLandTargetsDestroyed();
+
   readonly lastName = this._dossierService.lastName;
+  readonly seaTargetsDestroyed = this._dossierService.getSeaTargetsDestroyed();
 
   constructor(
     private readonly _dossierService: DossierService,

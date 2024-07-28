@@ -3,13 +3,7 @@
 <div class="grid mb-3">
   <div class="col-12 lg:col-8 relative">
     <div>
-      <app-map
-        [boss]="boss"
-        [player]="player"
-        [primaryTarget]="primaryTarget"
-        [secondaryTarget]="secondaryTarget"
-        [isGridEnabled]="isMapGridEnabled"
-      />
+      <app-map [mission]="mission" [isGridEnabled]="isMapGridEnabled" />
     </div>
     <div class="flex align-items-center py-3">
       <p-inputSwitch [(ngModel)]="isMapGridEnabled" />
@@ -20,24 +14,27 @@
     Описание миссии
 
     <ul>
-      @if (boss) {
+      @if (mission?.boss) {
         <li>
-          Босс: <span class="font-medium text-red-600">{{ boss.label }}</span>
-        </li>
-      }
-      @if (primaryTarget) {
-        <li>
-          Основная цель:
+          Босс:
           <span class="font-medium text-red-600">{{
-            primaryTarget.label
+            mission?.boss?.label
           }}</span>
         </li>
       }
-      @if (secondaryTarget) {
+      @if (mission?.primaryTarget) {
+        <li>
+          Основная цель:
+          <span class="font-medium text-red-600">{{
+            mission?.primaryTarget?.label
+          }}</span>
+        </li>
+      }
+      @if (mission?.secondaryTarget) {
         <li>
           Дополнительная цель:
           <span class="font-medium text-orange-600">{{
-            secondaryTarget.label
+            mission?.secondaryTarget?.label
           }}</span>
         </li>
       }

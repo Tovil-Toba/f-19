@@ -1,6 +1,7 @@
 import { Target } from './target.model';
 
 export const BOSSES: Target[] = [
+  // Эпизод 1
   {
     id: 'bomber',
     icon: 'fa-solid fa-plane',
@@ -11,7 +12,7 @@ export const BOSSES: Target[] = [
   },
   {
     id: 'command-post',
-    icon: 'fa-solid fa-place-of-worship',
+    icon: 'fa-solid fa-building-user',
     label: 'Командный пункт',
     type: 'land',
     tier: 1,
@@ -25,6 +26,7 @@ export const BOSSES: Target[] = [
     tier: 1,
     weaponType: 'AGM-84 Harpoon',
   },
+  // Эпизод 2
   {
     id: 'command-aircraft',
     icon: 'fa-solid fa-plane-engines',
@@ -49,6 +51,7 @@ export const BOSSES: Target[] = [
     tier: 2,
     weaponType: 'Mark 83',
   },
+  // Эпизод 3
   {
     id: 'mig-37',
     icon: 'fa-solid fa-jet-fighter',

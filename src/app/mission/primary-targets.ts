@@ -1,13 +1,7 @@
 import { Target } from './target.model';
 
 export const PRIMARY_TARGETS: Target[] = [
-  {
-    id: 'jet',
-    icon: 'fa-solid fa-jet-fighter',
-    label: 'Истребители',
-    type: 'air',
-    weaponType: 'AIM-54 Phoenix',
-  },
+  // Воздушные цели
   {
     id: 'airliner',
     icon: 'fa-solid fa-plane-engines',
@@ -23,11 +17,19 @@ export const PRIMARY_TARGETS: Target[] = [
     weaponType: 'AIM-54 Phoenix',
   },
   {
-    id: 'frigate',
-    icon: 'fa-solid fa-ship',
-    label: 'Фрегат',
-    type: 'sea',
-    weaponType: 'AGM-84 Harpoon',
+    id: 'fighters',
+    icon: 'fa-solid fa-jet-fighter',
+    label: 'Истребители',
+    type: 'air',
+    weaponType: 'AIM-54 Phoenix',
+  },
+  // Наземные цели
+  {
+    id: 'ammunition-depot',
+    icon: 'fa-solid fa-warehouse-full',
+    label: 'Склад боеприпасов',
+    type: 'land',
+    weaponType: 'Mark 83',
   },
   {
     id: 'anti-aircraft-warfare',
@@ -37,30 +39,16 @@ export const PRIMARY_TARGETS: Target[] = [
     weaponType: 'AGM-88 HARM',
   },
   {
-    id: 'tank',
-    icon: 'fa-solid fa-bulldozer',
-    label: 'Танки',
-    type: 'land',
-    weaponType: 'AGM-65 Maverick',
-  },
-  {
     id: 'barracks',
     icon: 'fa-solid fa-tents',
     label: 'Казармы',
     type: 'land',
     weaponType: 'Mark 83',
   },
-  /*{
-    id: 'palace',
-    icon: 'fa-solid fa-place-of-worship',
-    label: 'Командный пункт',
-    type: 'land',
-    weaponType: 'Mark 83',
-  },*/
   {
-    id: 'oil-well',
-    icon: 'fa-solid fa-oil-well',
-    label: 'Нефтяная вышка',
+    id: 'bridge',
+    icon: 'fa-solid fa-bridge',
+    label: 'Мост',
     type: 'land',
     weaponType: 'Mark 83',
   },
@@ -79,9 +67,23 @@ export const PRIMARY_TARGETS: Target[] = [
     weaponType: 'Mark 83',
   },
   {
-    id: 'ammunition-depot',
-    icon: 'fa-solid fa-warehouse-full',
-    label: 'Склад боеприпасов',
+    id: 'oil-well',
+    icon: 'fa-solid fa-oil-well',
+    label: 'Нефтяная вышка',
+    type: 'land',
+    weaponType: 'Mark 83',
+  },
+  {
+    id: 'tanks',
+    icon: 'fa-solid fa-bulldozer',
+    label: 'Танки',
+    type: 'land',
+    weaponType: 'AGM-65 Maverick',
+  },
+  {
+    id: 'tower-cell',
+    icon: 'fa-solid fa-tower-cell',
+    label: 'Телебашня',
     type: 'land',
     weaponType: 'Mark 83',
   },
@@ -91,5 +93,13 @@ export const PRIMARY_TARGETS: Target[] = [
     label: 'Поезд',
     type: 'land',
     weaponType: 'Mark 83',
+  },
+  // Морские цели
+  {
+    id: 'frigate',
+    icon: 'fa-solid fa-ship',
+    label: 'Фрегат',
+    type: 'sea',
+    weaponType: 'AGM-84 Harpoon',
   },
 ];

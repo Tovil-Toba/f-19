@@ -10,10 +10,26 @@
     />
   </div>
   <div class="col-12 lg:col-6 py-3">
-    <h3>{{ firstName }} {{ lastName }}</h3>
-    <ul>
-      <li>наземных целей уничтожено</li>
-      <li>воздушных целей уничтожено</li>
-    </ul>
+    <h3>
+      {{ firstName }} {{ lastName }}
+      @if (isAce) {
+        <i class="fa-solid fa-spade"></i>
+      }
+    </h3>
+
+    <p>
+      Воздушных целей уничтожено:
+      <span class="font-medium">{{ airTargetsDestroyed }}</span>
+    </p>
+
+    <p>
+      Наземных целей уничтожено:
+      <span class="font-medium">{{ landTargetsDestroyed }}</span>
+    </p>
+
+    <p>
+      Морских целей уничтожено:
+      <span class="font-medium">{{ seaTargetsDestroyed }}</span>
+    </p>
   </div>
 </div>

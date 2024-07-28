@@ -1,0 +1,88 @@
+<div class="flex flex-column md:flex-row w-full gap-3">
+  <div class="w-15rem h-15rem flex-shrink-0">
+    <app-map
+      [isGridEnabled]="false"
+      [isSmall]="true"
+      [mission]="mission"
+    ></app-map>
+  </div>
+
+  <div>
+    @if (mission?.boss) {
+      <div class="mb-3">
+        Босс:
+        <span class="font-medium text-red-600">{{ mission?.boss?.label }}</span>
+        <span class="ml-1">
+          @if (mission?.boss?.isDestroyed) {
+            <i class="fa-solid fa-check text-green-600"></i>
+          } @else {
+            <i class="fa-solid fa-xmark text-red-600"></i>
+          }
+        </span>
+      </div>
+    }
+
+    @if (mission?.primaryTarget) {
+      <div class="mb-3">
+        Основная цель:
+        <span class="font-medium text-red-600">
+          {{ mission?.primaryTarget?.label }}
+        </span>
+        <span class="ml-1">
+          @if (mission?.primaryTarget?.isDestroyed) {
+            <i class="fa-solid fa-check text-green-600"></i>
+          } @else {
+            <i class="fa-solid fa-xmark text-red-600"></i>
+          }
+        </span>
+      </div>
+    }
+
+    @if (mission?.secondaryTarget) {
+      <div class="mb-3">
+        Дополнительная цель:
+        <span class="font-medium text-orange-600">
+          {{ mission?.secondaryTarget?.label }}
+        </span>
+        <span class="ml-1">
+          @if (mission?.secondaryTarget?.isDestroyed) {
+            <i class="fa-solid fa-check text-green-600"></i>
+          } @else {
+            <i class="fa-solid fa-xmark text-red-600"></i>
+          }
+        </span>
+      </div>
+    }
+
+    @if (mission?.airTargetsDestroyed) {
+      <div class="mb-3">
+        Воздушных целей уничтожено:
+        <span class="font-medium">{{ mission?.airTargetsDestroyed }}</span>
+      </div>
+    }
+
+    @if (mission?.landTargetsDestroyed) {
+      <div class="mb-3">
+        Наземных целей уничтожено:
+        <span class="font-medium">{{ mission?.landTargetsDestroyed }}</span>
+      </div>
+    }
+
+    @if (mission?.seaTargetsDestroyed) {
+      <div class="mb-3">
+        Морских целей уничтожено:
+        <span class="font-medium">{{ mission?.seaTargetsDestroyed }}</span>
+      </div>
+    }
+
+    <div>
+      Статус:
+      <span
+        class="font-medium"
+        [class.text-green-600]="mission?.isCompleted"
+        [class.text-red-600]="!mission?.isCompleted"
+        >{{ mission?.isCompleted ? "Завершена" : "Провалена" }}</span
+      >
+    </div>
+  </div>
+</div>

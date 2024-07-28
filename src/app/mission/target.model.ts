@@ -4,7 +4,7 @@ import { TargetType } from './target-type.model';
 export interface Target {
   icon: string;
   id: string;
-  isBoss?: boolean;
+  isDestroyed?: boolean;
   label?: string;
   squareIndex?: number;
   tier?: number;

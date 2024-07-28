@@ -18,8 +18,13 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     label: 'Новости',
-    icon: 'fa-regular fa-envelope',
+    icon: 'fa-regular fa-newspaper',
     route: '/news',
+  },
+  {
+    label: 'История миссий',
+    icon: 'fa-regular fa-list',
+    route: '/missions-history',
   },
   {
     label: 'Досье',

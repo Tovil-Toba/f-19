@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 
+import { Mission } from '../mission/mission.model';
 import { MissionService } from '../mission/mission.service';
 import { WeaponType } from '../weapons-bay/weapon-type.model';
 import { WeaponsBayComponent } from '../weapons-bay/weapons-bay.component';
@@ -38,15 +39,14 @@ export class ArmamentComponent {
   }
 
   private _initDefaultWeaponTypes(): void {
-    if (this._missionService.boss) {
-      this.defaultWeaponTypes[0] = this._missionService.boss.weaponType;
-      this.defaultWeaponTypes[1] = this._missionService.boss.weaponType;
-    } else {
-      this.defaultWeaponTypes[0] =
-        this._missionService.primaryTarget?.weaponType;
+    const mission: Mission | undefined = this._missionService.mission();
 
-      this.defaultWeaponTypes[1] =
-        this._missionService.secondaryTarget?.weaponType;
+    if (mission?.boss) {
+      this.defaultWeaponTypes[0] = mission.boss.weaponType;
+      this.defaultWeaponTypes[1] = mission.boss.weaponType;
+    } else {
+      this.defaultWeaponTypes[0] = mission?.primaryTarget?.weaponType;
+      this.defaultWeaponTypes[1] = mission?.secondaryTarget?.weaponType;
     }
   }
 }

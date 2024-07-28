@@ -3,21 +3,21 @@
   [class.border-100]="isDarkTheme()"
   [class.border-300]="!isDarkTheme()"
 >
-  <span
+  <span class="white-space-nowrap"
     >Миссий завершено:
     <span class="font-medium">{{ completedMissionsCount() }}</span></span
   >
 
   <ng-container *ngTemplateOutlet="divider"></ng-container>
 
-  <span
+  <span class="white-space-nowrap"
     >Текущая миссия:
     <span class="font-medium">{{ currentMissionNumber() }}</span>
   </span>
 
   <ng-container *ngTemplateOutlet="divider"></ng-container>
 
-  <span
+  <span class="white-space-nowrap"
     >Тип миссии:
     <span
       class="font-medium"
@@ -29,7 +29,7 @@
 
   <ng-container *ngTemplateOutlet="divider"></ng-container>
 
-  <span
+  <span class="white-space-nowrap"
     >Эпизод:
     <span
       class="font-medium"

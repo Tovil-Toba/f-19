@@ -15,38 +15,66 @@
         <div
           class="relative flex border-black-alpha-60"
           [class.border-05]="isGridEnabled"
-          [class.hover:border-red-600]="isAvailableSquaresHighlighted && availableSquaresIndexes.includes(squareIndex)"
-          [class.cursor-pointer]="isAvailableSquaresHighlighted && availableSquaresIndexes.includes(squareIndex)"
-          [class.bg-white-alpha-50]="isAvailableSquaresHighlighted && !availableSquaresIndexes.includes(squareIndex)"
+          [class.hover:border-red-600]="
+            isAvailableSquaresHighlighted &&
+            availableSquaresIndexes.includes(squareIndex)
+          "
+          [class.cursor-pointer]="
+            isAvailableSquaresHighlighted &&
+            availableSquaresIndexes.includes(squareIndex)
+          "
+          [class.bg-white-alpha-50]="
+            isAvailableSquaresHighlighted &&
+            !availableSquaresIndexes.includes(squareIndex)
+          "
         >
           @if (isGridEnabled) {
-            <span class="absolute ml-1 text-black-alpha-60">{{ squareIndex }}</span>
+            <span
+              class="absolute text-black-alpha-60"
+              [class.text-xxs]="isSmall"
+              [class.ml-1]="!isSmall"
+            >
+              {{ squareIndex }}
+            </span>
           }
 
           @switch (squareIndex) {
-            @case (boss?.squareIndex) {
-              <i class="fa-solid fa-star absolute text-red-600 right-0 mr-1 mt-1"></i>
+            @case (mission?.boss?.squareIndex) {
               <i
-                class="text-2xl m-auto text-red-600"
-                [class]="boss?.icon"
+                class="fa-solid fa-star absolute text-red-600 right-0"
+                [class.mr-1]="!isSmall"
+                [class.mt-1]="!isSmall"
+                [class.text-xxs]="isSmall"
+              ></i>
+              <i
+                class="m-auto text-red-600"
+                [class]="mission?.boss?.icon"
+                [class.text-2xl]="!isSmall"
+                [class.text-sm]="isSmall"
               ></i>
             }
-            @case (player?.squareIndex) {
+            @case (mission?.player?.squareIndex) {
               <i
-                class="text-2xl m-auto text-green-600 rotate-90"
-                [class]="player?.icon"
+                class="m-auto text-green-600 rotate-90"
+                [class]="mission?.player?.icon"
+                [class.text-2xl]="!isSmall"
+                [class.text-sm]="isSmall"
               ></i>
             }
-            @case (primaryTarget?.squareIndex) {
+            @case (mission?.primaryTarget?.squareIndex) {
               <i
-                class="text-2xl m-auto text-red-600"
-                [class]="primaryTarget?.icon"
+                class="m-auto text-red-600"
+                [class]="mission?.primaryTarget?.icon"
+                [class.text-2xl]="!isSmall"
+                [class.text-sm]="isSmall"
               ></i>
             }
-            @case (secondaryTarget?.squareIndex) {
+            @case (mission?.secondaryTarget?.squareIndex) {
               <i
-                class="text-2xl m-auto text-orange-600"
-                [class]="secondaryTarget?.icon"
+                class="m-auto text-orange-600"
+                [class]="mission?.secondaryTarget?.icon"
+                [class.text-2xl]="!isSmall"
+                [class.text-sm]="isSmall"
               ></i>
             }
           }

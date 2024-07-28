@@ -1,0 +1,16 @@
+@if (!missionsHistory.length) {
+  <p>Завершенных миссий пока нет</p>
+} @else {
+  <div class="pt-3">
+    @for (mission of missionsHistory; track mission.number; let last = $last) {
+      <div class="w-full border-round">
+        <div class="font-medium mb-3">Миссия {{ mission.number }}</div>
+        <app-mission-info [mission]="mission" />
+      </div>
+
+      @if (!last) {
+        <p-divider />
+      }
+    }
+  </div>
+}

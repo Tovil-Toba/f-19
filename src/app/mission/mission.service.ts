@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 
 import { GameService } from '../game/game.service';
 import { LAND_SQUARES_INDEXES } from '../map/land-squares-indexes';
 import { PLAYER_SQUARES_INDEXES } from '../map/player-squares-indexes';
 import { SEA_SQUARES_INDEXES } from '../map/sea-squares-indexes';
 import { BOSSES } from './bosses';
+import { Mission } from './mission.model';
 import { PLAYER } from './player';
 import { PRIMARY_TARGETS } from './primary-targets';
 import { SECONDARY_TARGETS } from './secondary-targets';
@@ -15,13 +16,20 @@ import { TargetType } from './target-type.model';
   providedIn: 'root',
 })
 export class MissionService {
-  boss?: Target;
-  player?: Target;
-  primaryTarget?: Target;
-  secondaryTarget?: Target;
+  private _missionsHistory: Mission[] = [];
+  private readonly _destroyedPrimaryTargetIds: string[] = [];
+
+  private readonly _mission: WritableSignal<Mission | undefined> =
+    signal(undefined);
 
   private _missionNumber?: number;
   private _occupiedSquaresIndexes: number[] = [];
+
+  readonly mission: Signal<Mission | undefined> = this._mission;
+
+  get missionsHistory(): Mission[] {
+    return this._missionsHistory;
+  }
 
   get missionNumber(): number | undefined {
     return this._missionNumber;
@@ -29,7 +37,50 @@ export class MissionService {
 
   constructor(private readonly _gameService: GameService) {}
 
-  getBoss(tier = 1): Target {
+  init(): void {
+    this._missionNumber = this._gameService.currentMissionNumber();
+    this._occupiedSquaresIndexes = [];
+
+    const player: Target = this._getPlayer();
+
+    const boss: Target | undefined = this._gameService.isBossMission()
+      ? this._getBoss(this._gameService.currentMissionTier())
+      : undefined;
+
+    const primaryTarget: Target | undefined = this._gameService.isBossMission()
+      ? undefined
+      : this._getPrimaryTarget();
+
+    const secondaryTarget: Target | undefined =
+      this._gameService.isBossMission()
+        ? undefined
+        : this._getSecondaryTarget();
+
+    const mission: Mission = {
+      airTargetsDestroyed: 0,
+      boss,
+      isCompleted: false,
+      landTargetsDestroyed: 0,
+      number: this._missionNumber,
+      player,
+      primaryTarget,
+      seaTargetsDestroyed: 0,
+      secondaryTarget,
+    };
+
+    this._mission.set(mission);
+  }
+
+  completeMission(mission: Mission): void {
+    this._mission.set(mission);
+    this._missionsHistory.push(mission);
+
+    if (mission.primaryTarget) {
+      this._destroyedPrimaryTargetIds.push(mission.primaryTarget.id);
+    }
+  }
+
+  private _getBoss(tier = 1): Target {
     const targets: Target[] = BOSSES.filter(
       (target: Target) => target.tier === tier,
     );
@@ -42,7 +93,7 @@ export class MissionService {
     return target;
   }
 
-  getPlayer(): Target {
+  private _getPlayer(): Target {
     const player: Target = structuredClone(PLAYER);
 
     player.squareIndex = this._getRandomSquareIndex(player.type);
@@ -50,40 +101,17 @@ export class MissionService {
     return player;
   }
 
-  getPrimaryTarget(): Target {
-    const random = Math.floor(Math.random() * PRIMARY_TARGETS.length);
-    const target: Target = structuredClone(PRIMARY_TARGETS[random]);
+  private _getPrimaryTarget(): Target {
+    const primaryTargets: Target[] = PRIMARY_TARGETS.filter(
+      (target: Target) => !this._destroyedPrimaryTargetIds.includes(target.id),
+    );
+
+    const random = Math.floor(Math.random() * primaryTargets.length);
+    const target: Target = structuredClone(primaryTargets[random]);
 
     target.squareIndex = this._getRandomSquareIndex(target.type);
 
     return target;
-  }
-
-  getSecondaryTarget(): Target {
-    const random = Math.floor(Math.random() * SECONDARY_TARGETS.length);
-    const target: Target = structuredClone(SECONDARY_TARGETS[random]);
-
-    target.squareIndex = this._getRandomSquareIndex(target.type);
-
-    return target;
-  }
-
-  init(): void {
-    this._missionNumber = this._gameService.currentMissionNumber();
-    this._occupiedSquaresIndexes = [];
-    this.player = this.getPlayer();
-
-    this.boss = this._gameService.isBossMission()
-      ? this.getBoss(this._gameService.currentMissionTier())
-      : undefined;
-
-    this.primaryTarget = this._gameService.isBossMission()
-      ? undefined
-      : this.getPrimaryTarget();
-
-    this.secondaryTarget = this._gameService.isBossMission()
-      ? undefined
-      : this.getSecondaryTarget();
   }
 
   private _getRandomSquareIndex(targetType: TargetType): number {
@@ -140,5 +168,14 @@ export class MissionService {
     const random = Math.floor(Math.random() * SEA_SQUARES_INDEXES.length);
 
     return SEA_SQUARES_INDEXES[random];
+  }
+
+  private _getSecondaryTarget(): Target {
+    const random = Math.floor(Math.random() * SECONDARY_TARGETS.length);
+    const target: Target = structuredClone(SECONDARY_TARGETS[random]);
+
+    target.squareIndex = this._getRandomSquareIndex(target.type);
+
+    return target;
   }
 }
