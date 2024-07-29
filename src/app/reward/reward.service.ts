@@ -26,6 +26,10 @@ export class RewardService {
     this.randomUpgrades = this._getRandomUpgrades(3);
   }
 
+  reset(): void {
+    this.selectedUpgrades.clear();
+  }
+
   private _getRandomUpgrade(
     group: UpgradeGroup,
     maxTier = 1,
