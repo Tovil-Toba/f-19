@@ -22,21 +22,23 @@
   </ng-template>
 
   <ng-template pTemplate="end">
-    <p-button
-      [icon]="'fa-solid fa-power-off'"
-      [rounded]="true"
-      [text]="true"
-      [severity]="'contrast'"
-      (click)="confirmGameReset($event)"
-    ></p-button>
+    <div class="white-space-nowrap">
+      <p-button
+        [icon]="'fa-solid fa-power-off'"
+        [rounded]="true"
+        [text]="true"
+        [severity]="'contrast'"
+        (click)="confirmGameReset($event)"
+      ></p-button>
 
-    <p-button
-      [icon]="isDarkTheme() ? 'fa-solid fa-moon' : 'fa-solid fa-sun-bright'"
-      [rounded]="true"
-      [text]="true"
-      [severity]="isDarkTheme() ? 'info' : 'warning'"
-      (click)="toggleTheme()"
-    ></p-button>
+      <p-button
+        [icon]="isDarkTheme() ? 'fa-solid fa-moon' : 'fa-solid fa-sun-bright'"
+        [rounded]="true"
+        [text]="true"
+        [severity]="isDarkTheme() ? 'info' : 'warning'"
+        (click)="toggleTheme()"
+      ></p-button>
+    </div>
   </ng-template>
 </p-menubar>
 

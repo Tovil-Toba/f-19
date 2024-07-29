@@ -1,7 +1,11 @@
-<h3>Результаты миссии</h3>
+<div class="flex flex-column justify-content-between w-full h-full">
+  <div>
+    <h3>Результаты миссии</h3>
 
-<app-mission-info [mission]="mission()" />
+    <app-mission-info [mission]="mission()" />
+  </div>
 
-<div class="flex w-full justify-content-end mb-3">
-  <p-button label="Далее" (click)="nextGameStep()" />
+  <div class="flex w-full justify-content-end pb-3">
+    <p-button label="Далее" (click)="nextGameStep()" />
+  </div>
 </div>
