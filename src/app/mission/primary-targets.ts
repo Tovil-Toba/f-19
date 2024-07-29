@@ -22,6 +22,7 @@ export const PRIMARY_TARGETS: Target[] = [
     label: 'Истребители',
     type: 'air',
     weaponType: 'AIM-54 Phoenix',
+    count: 2,
   },
   // Наземные цели
   {
@@ -79,6 +80,7 @@ export const PRIMARY_TARGETS: Target[] = [
     label: 'Танки',
     type: 'land',
     weaponType: 'AGM-65 Maverick',
+    count: 2,
   },
   {
     id: 'tower-cell',

@@ -48,9 +48,13 @@ export class MissionResultService {
     targetType: TargetType,
   ): number {
     return (
-      (mission?.boss?.type === targetType ? 1 : 0) +
-      (mission?.primaryTarget?.type === targetType ? 1 : 0) +
-      (mission?.secondaryTarget?.type === targetType ? 1 : 0)
+      (mission?.boss?.type === targetType ? mission.boss?.count ?? 1 : 0) +
+      (mission?.primaryTarget?.type === targetType
+        ? mission.primaryTarget?.count ?? 1
+        : 0) +
+      (mission?.secondaryTarget?.type === targetType
+        ? mission.secondaryTarget?.count ?? 1
+        : 0)
     );
   }
 }

@@ -7,10 +7,7 @@
       </a>
     } @else {
       @if (item.url) {
-        <a
-          [href]="item.url"
-          class="p-menuitem-link"
-        >
+        <a [href]="item.url" class="p-menuitem-link">
           <span [class]="item.icon"></span>
           <span class="ml-2">{{ item.label }}</span>
         </a>
@@ -26,6 +23,14 @@
 
   <ng-template pTemplate="end">
     <p-button
+      [icon]="'fa-solid fa-power-off'"
+      [rounded]="true"
+      [text]="true"
+      [severity]="'contrast'"
+      (click)="confirmGameReset($event)"
+    ></p-button>
+
+    <p-button
       [icon]="isDarkTheme() ? 'fa-solid fa-moon' : 'fa-solid fa-sun-bright'"
       [rounded]="true"
       [text]="true"
@@ -34,3 +39,5 @@
     ></p-button>
   </ng-template>
 </p-menubar>
+
+<p-confirmPopup />

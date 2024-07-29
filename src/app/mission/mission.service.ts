@@ -16,12 +16,12 @@ import { TargetType } from './target-type.model';
   providedIn: 'root',
 })
 export class MissionService {
-  private _missionsHistory: Mission[] = [];
   private readonly _destroyedPrimaryTargetIds: string[] = [];
 
   private readonly _mission: WritableSignal<Mission | undefined> =
     signal(undefined);
 
+  private _missionsHistory: Mission[] = [];
   private _missionNumber?: number;
   private _occupiedSquaresIndexes: number[] = [];
 
@@ -78,6 +78,13 @@ export class MissionService {
     if (mission.primaryTarget) {
       this._destroyedPrimaryTargetIds.push(mission.primaryTarget.id);
     }
+  }
+
+  reset(): void {
+    this._mission.set(undefined);
+    this._missionsHistory = [];
+    this._missionNumber = undefined;
+    this._occupiedSquaresIndexes = [];
   }
 
   private _getBoss(tier = 1): Target {

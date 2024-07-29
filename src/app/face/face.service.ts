@@ -59,7 +59,7 @@ export class FaceService {
     return SKIN_TYPES[random];
   }
 
-  initFace(): void {
+  reset(): void {
     this.face = this.getRandomFace();
   }
 }

@@ -67,6 +67,17 @@ export class GameService {
     this._gameStep.set(GAME_STEPS[this._gameStepIndex]);
   }
 
+  reset(): void {
+    this._isGameOver.set(false);
+    this._isGameStarted.set(false);
+    this._gameStepIndex = -1;
+    this._gameStep.set(undefined);
+    this._completedBossMissionsCount.set(0);
+    this._completedStandardMissionsCount.set(0);
+    this._currentMissionNumber.set(1);
+    this._currentMissionTier.set(1);
+  }
+
   startGame(): void {
     this._isGameStarted.set(true);
     this.nextGameStep();

@@ -9,11 +9,19 @@ import { LAST_NAMES } from './last-names';
   providedIn: 'root',
 })
 export class DossierService {
-  readonly firstName = this.getRandomFirstName();
-  readonly lastName = this.getRandomLastName();
+  private _firstName = this.getRandomFirstName();
+  private _lastName = this.getRandomLastName();
 
   get isAce(): boolean {
     return this.getAirTargetsDestroyed() >= 5;
+  }
+
+  get firstName(): string {
+    return this._firstName;
+  }
+
+  get lastName(): string {
+    return this._lastName;
   }
 
   constructor(private readonly _missionService: MissionService) {}
@@ -52,5 +60,10 @@ export class DossierService {
         accumulator + (mission.seaTargetsDestroyed ?? 0),
       0,
     );
+  }
+
+  reset(): void {
+    this._firstName = this.getRandomFirstName();
+    this._lastName = this.getRandomLastName();
   }
 }

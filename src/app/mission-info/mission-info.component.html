@@ -25,8 +25,13 @@
     @if (mission?.primaryTarget) {
       <div class="mb-3">
         Основная цель:
-        <span class="font-medium text-red-600">
+        <span class="font-medium white-space-nowrap text-red-600">
           {{ mission?.primaryTarget?.label }}
+          {{
+            mission?.primaryTarget?.count
+              ? "(" + mission?.primaryTarget?.count + ")"
+              : ""
+          }}
         </span>
         <span class="ml-1">
           @if (mission?.primaryTarget?.isDestroyed) {
@@ -41,8 +46,13 @@
     @if (mission?.secondaryTarget) {
       <div class="mb-3">
         Дополнительная цель:
-        <span class="font-medium text-orange-600">
+        <span class="font-medium white-space-nowrap text-orange-600">
           {{ mission?.secondaryTarget?.label }}
+          {{
+            mission?.secondaryTarget?.count
+              ? "(" + mission?.secondaryTarget?.count + ")"
+              : ""
+          }}
         </span>
         <span class="ml-1">
           @if (mission?.secondaryTarget?.isDestroyed) {
