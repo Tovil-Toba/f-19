@@ -4,7 +4,17 @@
   <div class="pt-3">
     @for (mission of missionsHistory; track mission.number; let last = $last) {
       <div class="w-full border-round">
-        <div class="font-medium mb-3">Миссия {{ mission.number }}</div>
+        <div class="font-medium mb-3">
+          Миссия {{ mission.number }} <span class="text-400">|</span>
+          <span
+            class="font-medium"
+            [class.text-green-600]="mission.tier === 1"
+            [class.text-orange-600]="mission.tier === 2"
+            [class.text-red-600]="mission.tier >= 3"
+          >
+            Эпизод {{ mission.tier }}
+          </span>
+        </div>
         <app-mission-info [mission]="mission" />
       </div>
 
