@@ -13,7 +13,9 @@ import { MissionInfoComponent } from '../mission-info/mission-info.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MissionsHistoryComponent {
-  missionsHistory: Mission[] = this._missionService.missionsHistory.reverse();
+  missionsHistory: Mission[] = structuredClone(
+    this._missionService.missionsHistory,
+  ).reverse();
 
   constructor(private readonly _missionService: MissionService) {}
 }
