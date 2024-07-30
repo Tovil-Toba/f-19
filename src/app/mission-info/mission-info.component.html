@@ -10,8 +10,13 @@
   <div>
     @if (mission?.boss) {
       <div class="mb-3">
-        Босс:
-        <span class="font-medium text-red-600">{{ mission?.boss?.label }}</span>
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-star"></i> Босс:
+        </span>
+        <span class="font-medium text-red-600">
+          <i [class]="mission?.boss?.icon"></i>
+          {{ mission?.boss?.label }}
+        </span>
         <span class="ml-1">
           @if (mission?.boss?.isDestroyed) {
             <i class="fa-solid fa-check text-green-600"></i>
@@ -20,12 +25,21 @@
           }
         </span>
       </div>
+      <div class="mb-3">
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-wallet"></i> Награда за босса:
+        </span>
+        <span class="font-medium">${{ mission?.boss?.cost }}</span>
+      </div>
     }
 
     @if (mission?.primaryTarget) {
       <div class="mb-3">
-        Основная цель:
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-crosshairs-simple"></i> Основная цель:
+        </span>
         <span class="font-medium white-space-nowrap text-red-600">
+          <i [class]="mission?.primaryTarget?.icon"></i>
           {{ mission?.primaryTarget?.label }}
           {{
             mission?.primaryTarget?.count
@@ -41,12 +55,21 @@
           }
         </span>
       </div>
+      <div class="mb-3">
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-wallet"></i> Награда за основную цель:
+        </span>
+        <span class="font-medium">${{ mission?.primaryTarget?.cost }}</span>
+      </div>
     }
 
     @if (mission?.secondaryTarget) {
       <div class="mb-3">
-        Дополнительная цель:
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-circle-dot"></i> Дополнительная цель:
+        </span>
         <span class="font-medium white-space-nowrap text-orange-600">
+          <i [class]="mission?.secondaryTarget?.icon"></i>
           {{ mission?.secondaryTarget?.label }}
           {{
             mission?.secondaryTarget?.count
@@ -62,31 +85,45 @@
           }
         </span>
       </div>
+      <div class="mb-3">
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-wallet"></i> Награда за дополнительную цель:
+        </span>
+        <span class="font-medium">${{ mission?.secondaryTarget?.cost }}</span>
+      </div>
     }
 
     @if (mission?.airTargetsDestroyed) {
       <div class="mb-3">
-        Воздушных целей уничтожено:
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-clouds"></i> Воздушных целей уничтожено:
+        </span>
         <span class="font-medium">{{ mission?.airTargetsDestroyed }}</span>
       </div>
     }
 
     @if (mission?.landTargetsDestroyed) {
       <div class="mb-3">
-        Наземных целей уничтожено:
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-mountains"></i> Наземных целей уничтожено:
+        </span>
         <span class="font-medium">{{ mission?.landTargetsDestroyed }}</span>
       </div>
     }
 
     @if (mission?.seaTargetsDestroyed) {
       <div class="mb-3">
-        Морских целей уничтожено:
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-water"></i> Морских целей уничтожено:
+        </span>
         <span class="font-medium">{{ mission?.seaTargetsDestroyed }}</span>
       </div>
     }
 
     <div>
-      Статус:
+      <span class="white-space-nowrap">
+        <i class="fa-regular fa-clipboard-list"></i> Статус:
+      </span>
       <span
         class="font-medium"
         [class.text-green-600]="mission?.isCompleted"

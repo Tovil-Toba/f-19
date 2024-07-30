@@ -10,4 +10,5 @@ export interface Mission {
   primaryTarget?: Target;
   seaTargetsDestroyed?: number;
   secondaryTarget?: Target;
+  tier: number;
 }

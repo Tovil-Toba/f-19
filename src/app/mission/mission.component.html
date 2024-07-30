@@ -15,15 +15,20 @@
 
     @if (mission?.boss) {
       <p>
-        Босс:
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-star"></i> Босс:
+        </span>
         <span class="font-medium text-red-600">{{ mission?.boss?.label }}</span>
       </p>
     }
 
     @if (mission?.primaryTarget) {
       <p>
-        Основная цель:
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-crosshairs-simple"></i> Основная цель:
+        </span>
         <span class="font-medium white-space-nowrap text-red-600">
+          <i [class]="mission?.primaryTarget?.icon"></i>
           {{ mission?.primaryTarget?.label }}
           {{
             mission?.primaryTarget?.count
@@ -36,8 +41,11 @@
 
     @if (mission?.secondaryTarget) {
       <p>
-        Дополнительная цель:
+        <span class="white-space-nowrap">
+          <i class="fa-regular fa-circle-dot"></i> Дополнительная цель:
+        </span>
         <span class="font-medium white-space-nowrap text-orange-600">
+          <i [class]="mission?.secondaryTarget?.icon"></i>
           {{ mission?.secondaryTarget?.label }}
           {{
             mission?.secondaryTarget?.count

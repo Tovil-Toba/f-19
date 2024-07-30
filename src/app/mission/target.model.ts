@@ -3,6 +3,7 @@ import { TargetType } from './target-type.model';
 
 export interface Target {
   count?: number;
+  cost?: number;
   icon: string;
   id: string;
   isDestroyed?: boolean;

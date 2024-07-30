@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 
 import { MissionService } from '../mission/mission.service';
 import { FIRST_NAMES } from './first-names';
@@ -11,6 +11,9 @@ import { LAST_NAMES } from './last-names';
 export class DossierService {
   private _firstName = this.getRandomFirstName();
   private _lastName = this.getRandomLastName();
+  private readonly _wallet: WritableSignal<number> = signal<number>(0);
+
+  readonly wallet: Signal<number> = this._wallet;
 
   get isAce(): boolean {
     return this.getAirTargetsDestroyed() >= 5;
@@ -25,6 +28,10 @@ export class DossierService {
   }
 
   constructor(private readonly _missionService: MissionService) {}
+
+  fillWallet(money: number): void {
+    this._wallet.update((walletMoney) => walletMoney + money);
+  }
 
   getRandomFirstName(): string {
     const random = Math.floor(Math.random() * FIRST_NAMES.length);
@@ -65,5 +72,9 @@ export class DossierService {
   reset(): void {
     this._firstName = this.getRandomFirstName();
     this._lastName = this.getRandomLastName();
+  }
+
+  takeMoney(money: number): void {
+    this._wallet.update((walletMoney) => walletMoney - money);
   }
 }

@@ -23,6 +23,9 @@ export class WeaponsBayComponent implements OnInit {
   @Input()
   defaultWeaponType?: WeaponType;
 
+  @Input()
+  upgradedWeaponNames?: Set<string>;
+
   weapons: SelectItemGroup[] = WEAPONS;
   selectedWeapon?: SelectItem;
 

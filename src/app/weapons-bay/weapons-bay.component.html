@@ -10,7 +10,15 @@
       @if (selectedWeapon) {
         <div class="flex align-items-center gap-2">
           <i class="" [class]="selectedWeapon.icon"></i>
-          <div>{{ selectedWeapon.label }}</div>
+          <div>
+            {{ selectedWeapon.label }}
+            @if (
+              selectedWeapon.label &&
+              upgradedWeaponNames?.has(selectedWeapon.label)
+            ) {
+              <i class="fa-solid fa-plus"></i>
+            }
+          </div>
         </div>
       }
     </ng-template>
@@ -22,7 +30,12 @@
     <ng-template let-weapon pTemplate="item">
       <div class="flex align-items-center gap-2">
         <i class="" [class]="weapon.icon"></i>
-        <div>{{ weapon.label }}</div>
+        <div>
+          {{ weapon.label }}
+          @if (upgradedWeaponNames?.has(weapon.label)) {
+            <i class="fa-solid fa-plus"></i>
+          }
+        </div>
       </div>
     </ng-template>
   </p-dropdown>

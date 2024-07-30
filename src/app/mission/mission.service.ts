@@ -42,9 +42,10 @@ export class MissionService {
     this._occupiedSquaresIndexes = [];
 
     const player: Target = this._getPlayer();
+    const currentMissionTier = this._gameService.currentMissionTier();
 
     const boss: Target | undefined = this._gameService.isBossMission()
-      ? this._getBoss(this._gameService.currentMissionTier())
+      ? this._getBoss(currentMissionTier)
       : undefined;
 
     const primaryTarget: Target | undefined = this._gameService.isBossMission()
@@ -66,6 +67,7 @@ export class MissionService {
       primaryTarget,
       seaTargetsDestroyed: 0,
       secondaryTarget,
+      tier: currentMissionTier,
     };
 
     this._mission.set(mission);

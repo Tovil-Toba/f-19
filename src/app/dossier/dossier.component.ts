@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, WritableSignal } from "@angular/core";
 
 import { FaceComponent } from '../face/face.component';
 import { Face } from '../face/face.model';
@@ -23,6 +23,7 @@ export class DossierComponent {
 
   readonly lastName = this._dossierService.lastName;
   readonly seaTargetsDestroyed = this._dossierService.getSeaTargetsDestroyed();
+  readonly wallet = this._dossierService.wallet();
 
   constructor(
     private readonly _dossierService: DossierService,

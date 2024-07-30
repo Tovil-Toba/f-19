@@ -10,6 +10,8 @@ import { DropdownModule } from 'primeng/dropdown';
 
 import { Mission } from '../mission/mission.model';
 import { MissionService } from '../mission/mission.service';
+import { RewardService } from '../reward/reward.service';
+import { Upgrade } from '../upgrade/upgrade.model';
 import { WeaponType } from '../weapons-bay/weapon-type.model';
 import { WeaponsBayComponent } from '../weapons-bay/weapons-bay.component';
 
@@ -30,8 +32,14 @@ export class ArmamentComponent {
     'AIM-7 Sparrow',
   ];
 
-  constructor(private readonly _missionService: MissionService) {
+  readonly upgradedWeaponNames: Set<string> = new Set<string>();
+
+  constructor(
+    private readonly _missionService: MissionService,
+    private readonly _rewardService: RewardService,
+  ) {
     this._initDefaultWeaponTypes();
+    this._initUpgradedWeaponNames();
   }
 
   onArmamentSelect(): void {
@@ -48,5 +56,15 @@ export class ArmamentComponent {
       this.defaultWeaponTypes[0] = mission?.primaryTarget?.weaponType;
       this.defaultWeaponTypes[1] = mission?.secondaryTarget?.weaponType;
     }
+  }
+
+  private _initUpgradedWeaponNames(): void {
+    this.upgradedWeaponNames.clear();
+
+    this._rewardService.selectedUpgrades.forEach((upgrade: Upgrade) => {
+      if (upgrade.group === 'weapon') {
+        this.upgradedWeaponNames.add(upgrade.name);
+      }
+    });
   }
 }
