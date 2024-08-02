@@ -1,21 +1,19 @@
-<div class="flex flex-column w-full h-full">
+<div class="flex flex-column justify-content-between w-full h-full">
   <h3>Награда</h3>
 
-  <p-card header="Выберите награду" styleClass="my-3" class="m-auto w-10">
+  <div class="w-full">
     <app-upgrades
       [isUpgradesActive]="true"
       [upgrades]="randomUpgrades"
       (upgradeClick)="onUpgradeClick($event)"
     />
+  </div>
 
-    <ng-template pTemplate="footer">
-      <div class="flex justify-content-end">
-        <p-button
-          label="Далее"
-          [disabled]="!selectedUpgrade"
-          (click)="onUpgradeSelect()"
-        />
-      </div>
-    </ng-template>
-  </p-card>
+  <div class="flex justify-content-end pb-3">
+    <p-button
+      label="Далее"
+      [disabled]="!selectedUpgrade"
+      (click)="onUpgradeSelect()"
+    />
+  </div>
 </div>

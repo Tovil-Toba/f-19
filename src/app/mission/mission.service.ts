@@ -31,38 +31,40 @@ export class MissionService {
     return this._missionsHistory;
   }
 
-  get missionNumber(): number | undefined {
-    return this._missionNumber;
-  }
-
   constructor(private readonly _gameService: GameService) {}
 
   init(): void {
-    this._missionNumber = this._gameService.currentMissionNumber();
+    const currentMissionNumber = this._gameService.currentMissionNumber();
+
+    if (this._missionNumber === currentMissionNumber) {
+      return;
+    }
+
+    this._missionNumber = currentMissionNumber;
     this._occupiedSquaresIndexes = [];
 
     const player: Target = this._getPlayer();
     const currentMissionTier = this._gameService.currentMissionTier();
+    const isBossMission = this._gameService.isBossMission();
 
-    const boss: Target | undefined = this._gameService.isBossMission()
+    const boss: Target | undefined = isBossMission
       ? this._getBoss(currentMissionTier)
       : undefined;
 
-    const primaryTarget: Target | undefined = this._gameService.isBossMission()
+    const primaryTarget: Target | undefined = isBossMission
       ? undefined
       : this._getPrimaryTarget();
 
-    const secondaryTarget: Target | undefined =
-      this._gameService.isBossMission()
-        ? undefined
-        : this._getSecondaryTarget();
+    const secondaryTarget: Target | undefined = isBossMission
+      ? undefined
+      : this._getSecondaryTarget();
 
     const mission: Mission = {
       airTargetsDestroyed: 0,
       boss,
       isCompleted: false,
       landTargetsDestroyed: 0,
-      number: this._missionNumber,
+      number: currentMissionNumber,
       player,
       primaryTarget,
       seaTargetsDestroyed: 0,

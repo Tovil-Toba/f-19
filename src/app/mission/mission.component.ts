@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputSwitchModule } from 'primeng/inputswitch';
 
-import { GameService } from '../game/game.service';
 import { MapComponent } from '../map/map.component';
 import { Mission } from './mission.model';
 import { MissionService } from './mission.service';
@@ -21,29 +20,18 @@ import { MissionService } from './mission.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MissionComponent {
-  isMapGridEnabled = true;
-  mission?: Mission;
   missionConfirm: OutputEmitterRef<void> = output<void>();
 
-  constructor(
-    private readonly _gameService: GameService,
-    private readonly _missionService: MissionService,
-  ) {
-    this._init();
+  isMapGridEnabled = true;
+  mission?: Mission;
+
+  constructor(private readonly _missionService: MissionService) {
+    this._missionService.init();
+
+    this.mission = this._missionService.mission();
   }
 
   onMissionConfirm(): void {
     this.missionConfirm.emit();
-  }
-
-  private _init(): void {
-    if (
-      this._missionService.missionNumber !==
-      this._gameService.currentMissionNumber()
-    ) {
-      this._missionService.init();
-    }
-
-    this.mission = this._missionService.mission();
   }
 }

@@ -1,6 +1,7 @@
 // Порядок важен!
 export const GAME_STEPS = [
   'reward',
+  'store',
   'mission',
   'armament',
   'mission-result',

@@ -7,6 +7,6 @@ export interface Upgrade {
   id?: string; // todo
   icon: string;
   name: string;
-  price?: number;
+  price: number;
   tier: UpgradeTier;
 }

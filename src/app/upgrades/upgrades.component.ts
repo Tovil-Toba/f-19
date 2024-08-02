@@ -18,6 +18,9 @@ import { UpgradesGroupComponent } from '../upgrades-group/upgrades-group.compone
 })
 export class UpgradesComponent {
   @Input()
+  isStore = false;
+
+  @Input()
   isUpgradesActive = false;
 
   @Input()

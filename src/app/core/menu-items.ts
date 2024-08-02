@@ -12,11 +12,6 @@ export const MENU_ITEMS: MenuItem[] = [
     route: '/upgrades',
   },
   {
-    label: 'Магазин',
-    icon: 'fa-regular fa-dollar-sign',
-    route: '/store',
-  },
-  {
     label: 'Новости',
     icon: 'fa-regular fa-newspaper',
     route: '/news',

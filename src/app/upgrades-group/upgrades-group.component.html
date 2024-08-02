@@ -4,7 +4,10 @@
   @for (upgrade of upgrades; track upgrade.name) {
     <app-upgrade
       [upgrade]="upgrade"
-      [isActive]="isUpgradesActive || isUpgradeActive(upgrade)"
+      [isActive]="isUpgradeActive(upgrade)"
+      [isEnoughMoney]="upgrade.price <= wallet()"
+      [isSold]="isUpgradeSold(upgrade)"
+      [isStore]="isStore"
       [isSelected]="upgrade.name === selectedUpgrade?.name"
       (click)="onUpgradeClick(upgrade)"
     />

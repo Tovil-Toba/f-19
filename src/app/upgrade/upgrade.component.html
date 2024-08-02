@@ -22,7 +22,23 @@
   >
     <i class="text-4xl m-auto" [class]="upgrade.icon"></i>
   </div>
-  <div class="flex align-items-center ml-2" [class.text-500]="!isActive">
+  <div
+    class="flex flex-column justify-content-center ml-2"
+    [class.text-500]="!isActive"
+  >
     {{ upgrade.name }}
+    @if (isStore) {
+      @if (isSold) {
+        <p-tag severity="success" value="Продано" />
+      } @else {
+        <div
+          class="font-medium"
+          [class.text-green-500]="isEnoughMoney"
+          [class.text-red-200]="!isEnoughMoney"
+        >
+          ${{ upgrade?.price }}
+        </div>
+      }
+    }
   </div>
 </div>

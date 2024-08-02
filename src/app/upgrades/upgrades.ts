@@ -7,6 +7,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Планер',
     description: '',
     tier: 1,
+    price: 50,
   },
   {
     group: 'plane',
@@ -14,6 +15,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Автопилот',
     description: '',
     tier: 1,
+    price: 75,
   },
   {
     group: 'plane',
@@ -21,6 +23,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Конструкция',
     description: '',
     tier: 1,
+    price: 100,
   },
   {
     group: 'plane',
@@ -28,6 +31,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Покрытие',
     description: '',
     tier: 2,
+    price: 125,
   },
   {
     group: 'plane',
@@ -35,6 +39,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Кабина',
     description: '',
     tier: 2,
+    price: 150,
   },
   {
     group: 'plane',
@@ -42,6 +47,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Компоновка внутренних отсеков',
     description: '',
     tier: 2,
+    price: 175,
   },
   {
     group: 'plane',
@@ -49,6 +55,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Двигатели',
     description: '',
     tier: 3,
+    price: 200,
   },
   {
     group: 'plane',
@@ -56,6 +63,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'РЛС',
     description: '',
     tier: 3,
+    price: 225,
   },
   {
     group: 'plane',
@@ -63,6 +71,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'ДРЛО',
     description: '',
     tier: 3,
+    price: 250,
   },
 
   {
@@ -71,6 +80,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'M61 Vulcan',
     description: '',
     tier: 1,
+    price: 50,
   },
   {
     group: 'weapon',
@@ -78,6 +88,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Mark 83',
     description: '',
     tier: 1,
+    price: 75,
   },
   {
     group: 'weapon',
@@ -85,6 +96,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'AIM-9 Sidewinder',
     description: '',
     tier: 1,
+    price: 100,
   },
   {
     group: 'weapon',
@@ -92,6 +104,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'AGM-65 Maverick',
     description: '',
     tier: 2,
+    price: 125,
   },
   {
     group: 'weapon',
@@ -99,6 +112,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'AIM-7 Sparrow',
     description: '',
     tier: 2,
+    price: 150,
   },
   {
     group: 'weapon',
@@ -106,6 +120,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'AGM-84 Harpoon',
     description: '',
     tier: 2,
+    price: 175,
   },
   {
     group: 'weapon',
@@ -113,6 +128,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'AIM-54 Phoenix',
     description: '',
     tier: 3,
+    price: 200,
   },
   {
     group: 'weapon',
@@ -120,6 +136,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'AGM-88 HARM',
     description: '',
     tier: 3,
+    price: 225,
   },
   {
     group: 'weapon',
@@ -127,6 +144,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'B83',
     description: '',
     tier: 3,
+    price: 250,
   },
 
   {
@@ -135,6 +153,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Выносливость',
     description: '',
     tier: 1,
+    price: 50,
   },
   {
     group: 'pilot',
@@ -142,6 +161,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Реакция',
     description: '',
     tier: 1,
+    price: 75,
   },
   {
     group: 'pilot',
@@ -149,6 +169,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Шестое чувство',
     description: '',
     tier: 1,
+    price: 100,
   },
   {
     group: 'pilot',
@@ -156,6 +177,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Осведомленность',
     description: '',
     tier: 2,
+    price: 125,
   },
   {
     group: 'pilot',
@@ -163,6 +185,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Везение',
     description: '',
     tier: 2,
+    price: 150,
   },
   {
     group: 'pilot',
@@ -170,6 +193,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Скорость обучения',
     description: '',
     tier: 2,
+    price: 175,
   },
   {
     group: 'pilot',
@@ -177,6 +201,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Обмен',
     description: '',
     tier: 3,
+    price: 200,
   },
   {
     group: 'pilot',
@@ -184,6 +209,7 @@ export const UPGRADES: Upgrade[] = [
     name: 'Интеллект',
     description: '',
     tier: 3,
+    price: 225,
   },
   {
     group: 'pilot',
@@ -191,5 +217,6 @@ export const UPGRADES: Upgrade[] = [
     name: 'Второй шанс',
     description: '',
     tier: 3,
+    price: 250,
   },
 ];

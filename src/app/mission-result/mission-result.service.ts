@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { DossierService } from '../dossier/dossier.service';
 import { GameService } from '../game/game.service';
 import {
   BOSS_COST,
@@ -10,13 +9,14 @@ import {
 import { Mission } from '../mission/mission.model';
 import { MissionService } from '../mission/mission.service';
 import { TargetType } from '../mission/target-type.model';
+import { RewardService } from '../reward/reward.service';
 
 @Injectable()
 export class MissionResultService {
   constructor(
-    private readonly _dossierService: DossierService,
     private readonly _gameService: GameService,
     private readonly _missionService: MissionService,
+    private readonly _rewardService: RewardService,
   ) {}
 
   completeMission(mission: Mission | undefined): void {
@@ -56,7 +56,7 @@ export class MissionResultService {
       mission.secondaryTarget.cost = cost;
     }
 
-    this._dossierService.fillWallet(money);
+    this._rewardService.fillWallet(money);
     this._missionService.completeMission(mission);
 
     if (this._gameService.isBossMission()) {
@@ -69,7 +69,7 @@ export class MissionResultService {
   private _fillWallet(money: number): void {
     const currentMissionTier = this._gameService.currentMissionTier();
 
-    this._dossierService.fillWallet(money * currentMissionTier);
+    this._rewardService.fillWallet(money * currentMissionTier);
   }
 
   private _getTargetsDestroyed(

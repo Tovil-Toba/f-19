@@ -5,6 +5,7 @@ import {
   OnInit,
   output,
   OutputEmitterRef,
+  Signal,
 } from '@angular/core';
 
 import { RewardService } from '../reward/reward.service';
@@ -26,6 +27,9 @@ export class UpgradesGroupComponent implements OnInit {
   group!: UpgradeGroup;
 
   @Input()
+  isStore = false;
+
+  @Input()
   isUpgradesActive = false;
 
   @Input()
@@ -37,11 +41,24 @@ export class UpgradesGroupComponent implements OnInit {
   selectedUpgrades: Set<Upgrade> = this._rewardService.selectedUpgrades;
   title = '';
   upgradeClick: OutputEmitterRef<Upgrade> = output<Upgrade>();
+  readonly wallet: Signal<number> = this._rewardService.wallet;
 
   constructor(private readonly _rewardService: RewardService) {}
 
   isUpgradeActive(upgrade: Upgrade): boolean {
-    return this._rewardService.selectedUpgrades.has(upgrade);
+    const isStoreUpgradeActive =
+      !this._rewardService.selectedUpgrades.has(upgrade) &&
+      upgrade.price <= this._rewardService.wallet();
+
+    const isUpgradeActive =
+      this.isUpgradesActive ||
+      this._rewardService.selectedUpgrades.has(upgrade);
+
+    return this.isStore ? isStoreUpgradeActive : isUpgradeActive;
+  }
+
+  isUpgradeSold(upgrade: Upgrade): boolean {
+    return this.isStore && this._rewardService.selectedUpgrades.has(upgrade);
   }
 
   ngOnInit(): void {

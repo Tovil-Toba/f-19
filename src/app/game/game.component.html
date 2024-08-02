@@ -6,6 +6,9 @@
     @case ("reward") {
       <app-reward (upgradeSelect)="onUpgradeSelect($event)" />
     }
+    @case ("store") {
+      <app-store (shoppingCompleted)="onShoppingCompleted()" />
+    }
     @case ("mission") {
       <app-mission (missionConfirm)="onMissionConfirm()" />
     }
