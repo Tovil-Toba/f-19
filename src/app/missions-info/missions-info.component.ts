@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 
 import { ThemeService } from '../core/theme.service';
 import { GameService } from '../game/game.service';
+import { MAX_MISSION_TIER, TOTAL_MISSIONS_COUNT } from '../game/game-settings';
 
 @Component({
   selector: 'app-missions-info',
@@ -23,6 +24,8 @@ export class MissionsInfoComponent {
 
   readonly isBossMission: Signal<boolean> = this._gameService.isBossMission;
   readonly isDarkTheme: Signal<boolean> = this._themeService.isDarkTheme;
+  readonly maxMissionTier = MAX_MISSION_TIER;
+  readonly totalMissionsCount = TOTAL_MISSIONS_COUNT;
 
   constructor(
     private readonly _gameService: GameService,

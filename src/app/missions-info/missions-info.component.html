@@ -12,7 +12,8 @@
 
   <span class="white-space-nowrap"
     >Текущая миссия:
-    <span class="font-medium">{{ currentMissionNumber() }}</span>
+    <span class="font-medium">{{ currentMissionNumber() }}</span> из
+    <span class="font-medium">{{ totalMissionsCount }}</span>
   </span>
 
   <ng-container *ngTemplateOutlet="divider"></ng-container>
@@ -36,8 +37,10 @@
       [class.text-green-600]="currentMissionTier() === 1"
       [class.text-orange-600]="currentMissionTier() === 2"
       [class.text-red-600]="currentMissionTier() >= 3"
-      >{{ currentMissionTier() }}</span
     >
+      {{ currentMissionTier() }}
+    </span>
+    из <span class="font-medium">{{ maxMissionTier }}</span>
   </span>
 </div>
 
