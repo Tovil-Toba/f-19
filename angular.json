@@ -31,6 +31,8 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/assets/css/fonts/roboto/roboto.css",
+              "src/assets/fontawesome/css/all.css",
               {
                 "input": "src/assets/css/themes/mdc-light-indigo/theme.scss",
                 "bundleName": "mdc-light-indigo",
@@ -49,8 +51,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",

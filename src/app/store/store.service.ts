@@ -21,7 +21,10 @@ export class StoreService {
       this._randomUpgradesHistory.get(missionNumber);
 
     if (!randomUpgrades) {
-      randomUpgrades = this._rewardService.getRandomUpgrades(3);
+      randomUpgrades = structuredClone(
+        this._rewardService.getRandomUpgrades(3),
+      );
+
       this._setRandomDiscount(randomUpgrades);
       this._randomUpgradesHistory.set(missionNumber, randomUpgrades);
     }
