@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 
 import { RewardService } from '../reward/reward.service';
+import { StoreService } from '../store/store.service';
 import { UpgradeComponent } from '../upgrade/upgrade.component';
 import { Upgrade } from '../upgrade/upgrade.model';
 import { UPGRADES } from '../upgrades/upgrades';
@@ -43,12 +44,23 @@ export class UpgradesGroupComponent implements OnInit {
   upgradeClick: OutputEmitterRef<Upgrade> = output<Upgrade>();
   readonly wallet: Signal<number> = this._rewardService.wallet;
 
-  constructor(private readonly _rewardService: RewardService) {}
+  constructor(
+    private readonly _rewardService: RewardService,
+    private readonly _storeService: StoreService,
+  ) {}
+
+  isEnoughMoney(upgrade: Upgrade): boolean {
+    const price = this._storeService.getUpgradePrice(upgrade);
+
+    return price <= this.wallet();
+  }
 
   isUpgradeActive(upgrade: Upgrade): boolean {
+    const price = this._storeService.getUpgradePrice(upgrade);
+
     const isStoreUpgradeActive =
       !this._rewardService.selectedUpgrades.has(upgrade) &&
-      upgrade.price <= this._rewardService.wallet();
+      price <= this._rewardService.wallet();
 
     const isUpgradeActive =
       this.isUpgradesActive ||

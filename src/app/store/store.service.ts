@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { GameService } from '../game/game.service';
+import { UPGRADE_DISCOUNT_PERCENTS } from '../game/game-settings';
 import { RewardService } from '../reward/reward.service';
 import { Upgrade } from '../upgrade/upgrade.model';
 
@@ -21,6 +22,7 @@ export class StoreService {
 
     if (!randomUpgrades) {
       randomUpgrades = this._rewardService.getRandomUpgrades(3);
+      this._setRandomDiscount(randomUpgrades);
       this._randomUpgradesHistory.set(missionNumber, randomUpgrades);
     }
 
@@ -32,7 +34,22 @@ export class StoreService {
     private readonly _rewardService: RewardService,
   ) {}
 
+  getUpgradePrice(upgrade: Upgrade): number {
+    return upgrade.discountPercents
+      ? (upgrade.price * upgrade.discountPercents) / 100
+      : upgrade.price;
+  }
+
   reset(): void {
     this._randomUpgradesHistory.clear();
+  }
+
+  private _setRandomDiscount(upgrades: Upgrade[]): void {
+    const shuffledUpgrades: Upgrade[] = upgrades.sort(
+      () => 0.5 - Math.random(),
+    );
+
+    const discountedUpgrade: Upgrade = shuffledUpgrades[0];
+    discountedUpgrade.discountPercents = UPGRADE_DISCOUNT_PERCENTS;
   }
 }

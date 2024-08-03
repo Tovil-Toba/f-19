@@ -5,7 +5,7 @@
     <app-upgrade
       [upgrade]="upgrade"
       [isActive]="isUpgradeActive(upgrade)"
-      [isEnoughMoney]="upgrade.price <= wallet()"
+      [isEnoughMoney]="isEnoughMoney(upgrade)"
       [isSold]="isUpgradeSold(upgrade)"
       [isStore]="isStore"
       [isSelected]="upgrade.name === selectedUpgrade?.name"

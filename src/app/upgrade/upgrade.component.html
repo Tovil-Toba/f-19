@@ -36,7 +36,21 @@
           [class.text-green-500]="isEnoughMoney"
           [class.text-red-200]="!isEnoughMoney"
         >
-          ${{ upgrade?.price }}
+          <span
+            [class.line-through]="upgrade.discountPercents"
+            [class.text-500]="upgrade.discountPercents"
+            >${{ upgrade?.price }}</span
+          >
+          @if (upgrade.discountPercents) {
+            <span class="ml-2"
+              >${{ (upgrade.price * upgrade.discountPercents) / 100 }}</span
+            >
+            <p-tag
+              class="ml-1"
+              severity="danger"
+              [value]="'-' + upgrade.discountPercents + '%'"
+            />
+          }
         </div>
       }
     }

@@ -6,4 +6,5 @@ export const BOSS_COST = 50;
 export const PRIMARY_TARGET_COST = 15;
 export const SECONDARY_TARGET_COST = 5;
 
+export const UPGRADE_DISCOUNT_PERCENTS = 50;
 export const WALLET = 100;

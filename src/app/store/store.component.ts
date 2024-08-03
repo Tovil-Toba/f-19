@@ -25,8 +25,7 @@ import { StoreService } from './store.service';
 export class StoreComponent {
   shoppingCompleted: OutputEmitterRef<void> = output<void>();
 
-  randomUpgrades: Upgrade[] = this._storeService.randomUpgrades;
-  selectedUpgrade?: Upgrade;
+  readonly randomUpgrades: Upgrade[] = this._storeService.randomUpgrades;
   readonly wallet: Signal<number> = this._rewardService.wallet;
 
   constructor(
@@ -40,12 +39,14 @@ export class StoreComponent {
   }
 
   onUpgradeClick(upgrade: Upgrade): void {
-    if (upgrade.price > this._rewardService.wallet()) {
+    const price = this._storeService.getUpgradePrice(upgrade);
+
+    if (price > this._rewardService.wallet()) {
       return;
     }
 
     this._confirmationService.confirm({
-      message: `Купить <span class="font-bold">${upgrade.name}</span> за <span class="font-medium">$${upgrade.price}?</span>`,
+      message: `Купить <span class="font-bold">${upgrade.name}</span> за <span class="font-medium">$${price}?</span>`,
       header: 'Покупка',
       icon: upgrade.icon,
       rejectButtonStyleClass: 'p-button-text',
@@ -56,8 +57,9 @@ export class StoreComponent {
   }
 
   private _buyUpgrade(upgrade: Upgrade): void {
-    this.selectedUpgrade = upgrade;
-    this._rewardService.takeMoney(upgrade.price);
+    const price = this._storeService.getUpgradePrice(upgrade);
+
+    this._rewardService.takeMoney(price);
     this._rewardService.selectedUpgrades.add(upgrade);
   }
 }
