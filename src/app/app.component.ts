@@ -5,10 +5,11 @@ import {
   Signal,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PrimeNGConfig } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MenubarModule } from 'primeng/menubar';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { ToastModule } from 'primeng/toast';
 
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ThemeService } from './core/theme.service';
@@ -27,7 +28,9 @@ import { MissionsInfoComponent } from './missions-info/missions-info.component';
     RouterOutlet,
     ScrollTopModule,
     MissionsInfoComponent,
+    ToastModule,
   ],
+  providers: [MessageService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 import { GameService } from '../game/game.service';
 import {
@@ -15,6 +16,7 @@ import { RewardService } from '../reward/reward.service';
 export class MissionResultService {
   constructor(
     private readonly _gameService: GameService,
+    private readonly _messageService: MessageService,
     private readonly _missionService: MissionService,
     private readonly _rewardService: RewardService,
   ) {}
@@ -64,12 +66,8 @@ export class MissionResultService {
     } else {
       this._gameService.incrementCompletedStandardMissions();
     }
-  }
 
-  private _fillWallet(money: number): void {
-    const currentMissionTier = this._gameService.currentMissionTier();
-
-    this._rewardService.fillWallet(money * currentMissionTier);
+    this._showMissionCompleteToast();
   }
 
   private _getTargetsDestroyed(
@@ -85,5 +83,12 @@ export class MissionResultService {
         ? mission.secondaryTarget?.count ?? 1
         : 0)
     );
+  }
+
+  private _showMissionCompleteToast() {
+    this._messageService.add({
+      severity: 'success',
+      summary: 'Миссия завершена',
+    });
   }
 }
