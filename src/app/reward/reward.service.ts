@@ -2,6 +2,7 @@ import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 
 import { GameService } from '../game/game.service';
 import { WALLET } from '../game/game-settings';
+import { PlayerSide } from '../game/player-side.model';
 import { Upgrade } from '../upgrade/upgrade.model';
 import { UPGRADES } from '../upgrades/upgrades';
 import { UpgradeGroup } from '../upgrades-group/upgrade-group.model';
@@ -17,9 +18,8 @@ export class RewardService {
 
   private readonly _wallet: WritableSignal<number> = signal<number>(WALLET);
 
-  readonly wallet: Signal<number> = this._wallet;
-
   readonly selectedUpgrades: Set<Upgrade> = new Set<Upgrade>();
+  readonly wallet: Signal<number> = this._wallet;
 
   get randomUpgrades(): Upgrade[] {
     const missionNumber = this._gameService.currentMissionNumber();
@@ -88,11 +88,14 @@ export class RewardService {
     group: UpgradeGroup,
     maxTier = 1,
   ): Upgrade | undefined {
+    const playerSide: PlayerSide = this._gameService.playerSide();
+
     const upgrades: Upgrade[] = UPGRADES.filter(
       (upgrade: Upgrade) =>
         !this.selectedUpgrades.has(upgrade) &&
         upgrade.group === group &&
-        upgrade.tier <= maxTier,
+        upgrade.tier <= maxTier &&
+        (!upgrade.playerSide || upgrade.playerSide === playerSide),
     );
 
     const shuffledUpgrades: Upgrade[] = upgrades.sort(

@@ -8,6 +8,8 @@ import {
   Signal,
 } from '@angular/core';
 
+import { GameService } from '../game/game.service';
+import { PlayerSide } from '../game/player-side.model';
 import { RewardService } from '../reward/reward.service';
 import { StoreService } from '../store/store.service';
 import { UpgradeComponent } from '../upgrade/upgrade.component';
@@ -45,6 +47,7 @@ export class UpgradesGroupComponent implements OnInit {
   readonly wallet: Signal<number> = this._rewardService.wallet;
 
   constructor(
+    private readonly _gameService: GameService,
     private readonly _rewardService: RewardService,
     private readonly _storeService: StoreService,
   ) {}
@@ -75,8 +78,13 @@ export class UpgradesGroupComponent implements OnInit {
 
   ngOnInit(): void {
     this.title = UPGRADE_GROUP_TITLE[this.group];
+
+    const playerSide: PlayerSide = this._gameService.playerSide();
+
     this.upgrades = (this.upgrades ?? UPGRADES).filter(
-      (upgrade: Upgrade) => upgrade.group === this.group,
+      (upgrade: Upgrade) =>
+        upgrade.group === this.group &&
+        (!upgrade.playerSide || upgrade.playerSide === playerSide),
     );
   }
 
