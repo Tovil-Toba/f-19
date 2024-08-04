@@ -1,3 +1,7 @@
+import { PlayerSide } from './player-side.model';
+
+export const DEFAULT_PLAYER_SIDE: PlayerSide = 'us';
+
 export const COMPLETED_STANDARD_MISSIONS_INTERVAL = 2;
 export const MAX_MISSION_TIER = 3;
 export const TOTAL_MISSIONS_COUNT = 9;

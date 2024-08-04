@@ -8,10 +8,12 @@ import {
 
 import {
   COMPLETED_STANDARD_MISSIONS_INTERVAL,
+  DEFAULT_PLAYER_SIDE,
   MAX_MISSION_TIER,
   TOTAL_MISSIONS_COUNT,
 } from './game-settings';
 import { GAME_STEPS, GameStep } from './game-step.model';
+import { PlayerSide } from './player-side.model';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +54,17 @@ export class GameService {
   readonly isBossMission: Signal<boolean> = this._isBossMission;
   readonly isGameOver: Signal<boolean> = this._isGameOver;
   readonly isGameStarted: Signal<boolean> = this._isGameStarted;
+
+  readonly isRuPlayerSide: Signal<boolean> = computed(
+    () => this.playerSide() === 'ru',
+  );
+
+  readonly isUsPlayerSide: Signal<boolean> = computed(
+    () => this.playerSide() === 'us',
+  );
+
+  readonly playerSide: WritableSignal<PlayerSide> =
+    signal<PlayerSide>(DEFAULT_PLAYER_SIDE);
 
   incrementCompletedBossMissions(): void {
     this.completedBossMissionsCount.update((value) => ++value);

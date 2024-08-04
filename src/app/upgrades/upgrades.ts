@@ -1,6 +1,7 @@
 import { Upgrade } from '../upgrade/upgrade.model';
 
 export const UPGRADES: Upgrade[] = [
+  // Самолет
   {
     group: 'plane',
     icon: 'fa-solid fa-shuttle-space', // fa-solid fa-plane
@@ -73,9 +74,10 @@ export const UPGRADES: Upgrade[] = [
     tier: 3,
     price: 250,
   },
-
+  // Вооружение
   {
     group: 'weapon',
+    playerSide: 'us',
     icon: 'fa-solid fa-volcano',
     name: 'M61 Vulcan',
     description: '',
@@ -84,6 +86,7 @@ export const UPGRADES: Upgrade[] = [
   },
   {
     group: 'weapon',
+    playerSide: 'us',
     icon: 'fa-solid fa-bomb',
     name: 'Mark 83',
     description: '',
@@ -92,6 +95,7 @@ export const UPGRADES: Upgrade[] = [
   },
   {
     group: 'weapon',
+    playerSide: 'us',
     icon: 'fa-solid fa-wind',
     name: 'AIM-9 Sidewinder',
     description: '',
@@ -100,6 +104,7 @@ export const UPGRADES: Upgrade[] = [
   },
   {
     group: 'weapon',
+    playerSide: 'us',
     icon: 'fa-solid fa-person-walking',
     name: 'AGM-65 Maverick',
     description: '',
@@ -108,6 +113,7 @@ export const UPGRADES: Upgrade[] = [
   },
   {
     group: 'weapon',
+    playerSide: 'us',
     icon: 'fa-solid fa-bird', // fa-dove
     name: 'AIM-7 Sparrow',
     description: '',
@@ -116,6 +122,7 @@ export const UPGRADES: Upgrade[] = [
   },
   {
     group: 'weapon',
+    playerSide: 'us',
     icon: 'fa-solid fa-water',
     name: 'AGM-84 Harpoon',
     description: '',
@@ -124,6 +131,7 @@ export const UPGRADES: Upgrade[] = [
   },
   {
     group: 'weapon',
+    playerSide: 'us',
     icon: 'fa-brands fa-phoenix-framework',
     name: 'AIM-54 Phoenix',
     description: '',
@@ -132,6 +140,7 @@ export const UPGRADES: Upgrade[] = [
   },
   {
     group: 'weapon',
+    playerSide: 'us',
     icon: 'fa-solid fa-satellite-dish',
     name: 'AGM-88 HARM',
     description: '',
@@ -140,13 +149,14 @@ export const UPGRADES: Upgrade[] = [
   },
   {
     group: 'weapon',
+    playerSide: 'us',
     icon: 'fa-solid fa-radiation',
     name: 'B83',
     description: '',
     tier: 3,
     price: 250,
   },
-
+  // Пилот
   {
     group: 'pilot',
     icon: 'fa-solid fa-dumbbell',

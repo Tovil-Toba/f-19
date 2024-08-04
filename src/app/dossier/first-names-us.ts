@@ -1,6 +1,6 @@
 // https://lim-english.com/posts/anglijskie-imena-i-familii/
 
-export const FIRST_NAMES: string[] = [
+export const FIRST_NAMES_US: string[] = [
   // Английские имена
   'Самуэль',
   'Джек',

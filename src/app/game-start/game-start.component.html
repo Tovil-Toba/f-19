@@ -1,0 +1,43 @@
+<div class="w-full h-full py-3">
+  <div
+    class="flex flex-column w-full h-full justify-content-between align-items-center border-radius py-3"
+    [class.f-19-background]="isUsPlayerSide()"
+    [class.mig-37-background]="isRuPlayerSide()"
+  >
+    <div
+      class="text-2xl text-white"
+      [class.text-white]="isUsPlayerSide()"
+      [class.text-red-600]="isRuPlayerSide()"
+    >
+      Ретросим
+    </div>
+
+    <div
+      class="text-8xl font-bold"
+      [class.text-white]="isUsPlayerSide()"
+      [class.text-red-600]="isRuPlayerSide()"
+    >
+      {{ isRuPlayerSide() ? "МиГ-37" : "F-19" }}
+    </div>
+
+    <div>
+      <p-button
+        class="mr-3"
+        icon="fa-solid fa-circle-star"
+        label="США"
+        severity="info"
+        (click)="setPlayerSide('us')"
+      />
+
+      <p-button label="Начать игру" (click)="onGameStart()" />
+
+      <p-button
+        class="ml-3"
+        icon="fa-solid fa-star-sharp"
+        label="СССР"
+        severity="danger"
+        (click)="setPlayerSide('ru')"
+      />
+    </div>
+  </div>
+</div>

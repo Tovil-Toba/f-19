@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 
 import { ArmamentComponent } from '../armament/armament.component';
 import { GameOverComponent } from '../game-over/game-over.component';
-import { HomeScreenComponent } from '../home-screen/home-screen.component';
+import { GameStartComponent } from '../game-start/game-start.component';
 import { MissionComponent } from '../mission/mission.component';
 import { MissionResultComponent } from '../mission-result/mission-result.component';
 import { RewardComponent } from '../reward/reward.component';
@@ -19,7 +19,7 @@ import { GameStep } from './game-step.model';
   imports: [
     ArmamentComponent,
     GameOverComponent,
-    HomeScreenComponent,
+    GameStartComponent,
     MissionComponent,
     MissionResultComponent,
     RewardComponent,

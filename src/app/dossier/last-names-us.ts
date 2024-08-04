@@ -1,6 +1,6 @@
 // https://lim-english.com/posts/anglijskie-imena-i-familii/
 
-export const LAST_NAMES: string[] = [
+export const LAST_NAMES_US: string[] = [
   // Английские фамилии
   'Адамсон',
   'Олдридж',

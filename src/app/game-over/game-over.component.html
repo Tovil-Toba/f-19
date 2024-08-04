@@ -1,6 +1,8 @@
 <div class="w-full h-full py-3">
   <div
-    class="f-19-alt-background flex flex-column w-full h-full justify-content-center align-items-center relative border-radius py-3"
+    class="flex flex-column w-full h-full justify-content-center align-items-center relative border-radius py-3"
+    [class.f-19-alt-background]="isUsPlayerSide()"
+    [class.mig-37-alt-background]="isRuPlayerSide()"
   >
     <div class="text-6xl text-white font-bold">Поздравляем!</div>
 

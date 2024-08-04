@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 
 import { SharedService } from '../core/shared.service';
+import { GameService } from '../game/game.service';
 
 @Component({
   selector: 'app-game-over',
@@ -12,7 +13,13 @@ import { SharedService } from '../core/shared.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameOverComponent {
-  constructor(private readonly _sharedService: SharedService) {}
+  readonly isRuPlayerSide: Signal<boolean> = this._gameService.isRuPlayerSide;
+  readonly isUsPlayerSide: Signal<boolean> = this._gameService.isUsPlayerSide;
+
+  constructor(
+    private readonly _gameService: GameService,
+    private readonly _sharedService: SharedService,
+  ) {}
 
   resetGame(): void {
     this._sharedService.resetGame();

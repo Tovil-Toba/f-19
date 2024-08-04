@@ -2,7 +2,17 @@
   <ng-template pTemplate="item" let-item>
     @if (item.route) {
       <a [routerLink]="item.route" class="p-menuitem-link">
-        <span [class]="item.icon"></span>
+        @if (item.id === "game") {
+          <span
+            class="fa-solid"
+            [class.fa-circle-star]="isUsPlayerSide()"
+            [class.fa-star-sharp]="isRuPlayerSide()"
+            [class.text-blue-600]="isUsPlayerSide()"
+            [class.text-red-600]="isRuPlayerSide()"
+          ></span>
+        } @else {
+          <span [class]="item.icon"></span>
+        }
         <span class="ml-2">{{ item.label }}</span>
       </a>
     } @else {

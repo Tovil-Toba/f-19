@@ -2,6 +2,7 @@ import { MenuItem } from 'primeng/api';
 
 export const MENU_ITEMS: MenuItem[] = [
   {
+    id: 'game',
     label: 'Игра',
     icon: 'fa-regular fa-circle-star', // 'fa-regular fa-star-sharp'
     route: '/',
