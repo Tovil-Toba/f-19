@@ -21,9 +21,7 @@ export class StoreService {
       this._randomUpgradesHistory.get(missionNumber);
 
     if (!randomUpgrades) {
-      randomUpgrades = structuredClone(
-        this._rewardService.getRandomUpgrades(3),
-      );
+      randomUpgrades = this._rewardService.getRandomUpgrades(3);
 
       this._setRandomDiscount(randomUpgrades);
       this._randomUpgradesHistory.set(missionNumber, randomUpgrades);
@@ -47,7 +45,15 @@ export class StoreService {
     this._randomUpgradesHistory.clear();
   }
 
+  private _resetUpgradeDiscounts(upgrades: Upgrade[]): void {
+    upgrades
+      .filter((upgrade: Upgrade) => upgrade.discountPercents !== undefined)
+      .forEach((upgrade: Upgrade) => (upgrade.discountPercents = undefined));
+  }
+
   private _setRandomDiscount(upgrades: Upgrade[]): void {
+    this._resetUpgradeDiscounts(upgrades);
+
     const shuffledUpgrades: Upgrade[] = upgrades.sort(
       () => 0.5 - Math.random(),
     );
