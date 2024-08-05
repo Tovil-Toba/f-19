@@ -5,7 +5,7 @@ export const BOSSES_US: Target[] = [
   {
     id: 'bomber',
     icon: 'fa-solid fa-plane',
-    label: 'Дальний бомбардировщик',
+    label: 'Дальний бомбардировщик Ту-22',
     type: 'air',
     tier: 1,
     weaponType: 'AIM-54 Phoenix',
@@ -43,14 +43,6 @@ export const BOSSES_US: Target[] = [
     tier: 2,
     weaponType: 'AGM-88 HARM',
   },
-  {
-    id: 'airfield',
-    icon: 'fa-solid fa-plane-departure',
-    type: 'land',
-    label: 'Аэродром',
-    tier: 2,
-    weaponType: 'Mark 83',
-  },
   // Эпизод 3
   {
     id: 'mig-37',
@@ -59,6 +51,14 @@ export const BOSSES_US: Target[] = [
     type: 'air',
     tier: 3,
     weaponType: 'AIM-54 Phoenix',
+  },
+  {
+    id: 'airfield',
+    icon: 'fa-solid fa-plane-departure',
+    type: 'land',
+    label: 'Аэродром',
+    tier: 3,
+    weaponType: 'Mark 83',
   },
   {
     id: 'palace',

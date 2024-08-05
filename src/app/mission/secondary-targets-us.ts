@@ -3,9 +3,44 @@ import { Target } from './target.model';
 export const SECONDARY_TARGETS_US: Target[] = [
   // Воздушные цели
   {
-    id: 'fighter',
+    id: 'su-22',
     icon: 'fa-solid fa-jet-fighter',
-    label: 'Истребитель',
+    label: 'Истребитель Су-22',
+    type: 'air',
+    weaponType: 'AIM-54 Phoenix',
+  },
+  {
+    id: 'mig-21',
+    icon: 'fa-solid fa-jet-fighter',
+    label: 'Истребитель МиГ-21',
+    type: 'air',
+    weaponType: 'AIM-54 Phoenix',
+  },
+  {
+    id: 'mig-23',
+    icon: 'fa-solid fa-jet-fighter',
+    label: 'Истребитель МиГ-23',
+    type: 'air',
+    weaponType: 'AIM-54 Phoenix',
+  },
+  {
+    id: 'mig-25',
+    icon: 'fa-solid fa-jet-fighter',
+    label: 'Истребитель МиГ-25',
+    type: 'air',
+    weaponType: 'AIM-54 Phoenix',
+  },
+  {
+    id: 'mirage-f1',
+    icon: 'fa-solid fa-jet-fighter',
+    label: 'Истребитель Mirage F1',
+    type: 'air',
+    weaponType: 'AIM-54 Phoenix',
+  },
+  {
+    id: 'mirage-5',
+    icon: 'fa-solid fa-jet-fighter',
+    label: 'Истребитель Mirage 5',
     type: 'air',
     weaponType: 'AIM-54 Phoenix',
   },
