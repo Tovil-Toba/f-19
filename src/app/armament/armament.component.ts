@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 
+import { GameService } from '../game/game.service';
 import { Mission } from '../mission/mission.model';
 import { MissionService } from '../mission/mission.service';
 import { RewardService } from '../reward/reward.service';
@@ -28,13 +29,26 @@ export class ArmamentComponent {
   readonly defaultWeaponTypes: (WeaponType | undefined)[] = [
     undefined,
     undefined,
-    'AIM-9 Sidewinder',
-    'AIM-7 Sparrow',
+    this._thirdDefaultWeaponType,
+    this._fourthDefaultWeaponType,
   ];
 
   readonly upgradedWeaponNames: Set<string> = new Set<string>();
 
+  private get _fourthDefaultWeaponType(): WeaponType {
+    return this._gameService.isRuPlayerSide()
+      ? 'Р-77 (AA-12 Adder)'
+      : 'AIM-7 Sparrow';
+  }
+
+  private get _thirdDefaultWeaponType(): WeaponType {
+    return this._gameService.isRuPlayerSide()
+      ? 'Р-73 (AA-11 Archer)'
+      : 'AIM-9 Sidewinder';
+  }
+
   constructor(
+    private readonly _gameService: GameService,
     private readonly _missionService: MissionService,
     private readonly _rewardService: RewardService,
   ) {

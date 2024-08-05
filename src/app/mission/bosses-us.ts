@@ -1,6 +1,6 @@
 import { Target } from './target.model';
 
-export const BOSSES: Target[] = [
+export const BOSSES_US: Target[] = [
   // Эпизод 1
   {
     id: 'bomber',

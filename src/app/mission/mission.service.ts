@@ -2,13 +2,18 @@ import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 
 import { GameService } from '../game/game.service';
 import { LAND_SQUARES_INDEXES } from '../map/land-squares-indexes';
-import { PLAYER_SQUARES_INDEXES } from '../map/player-squares-indexes';
+import { PLAYER_SQUARES_INDEXES_RU } from '../map/player-squares-indexes-ru';
+import { PLAYER_SQUARES_INDEXES_US } from '../map/player-squares-indexes-us';
 import { SEA_SQUARES_INDEXES } from '../map/sea-squares-indexes';
-import { BOSSES } from './bosses';
+import { BOSSES_RU } from './bosses-ru';
+import { BOSSES_US } from './bosses-us';
 import { Mission } from './mission.model';
-import { PLAYER } from './player';
-import { PRIMARY_TARGETS } from './primary-targets';
-import { SECONDARY_TARGETS } from './secondary-targets';
+import { PLAYER_RU } from './player-ru';
+import { PLAYER_US } from './player-us';
+import { PRIMARY_TARGETS_RU } from './primary-targets-ru';
+import { PRIMARY_TARGETS_US } from './primary-targets-us';
+import { SECONDARY_TARGETS_RU } from './secondary-targets-ru';
+import { SECONDARY_TARGETS_US } from './secondary-targets-us';
 import { Target } from './target.model';
 import { TargetType } from './target-type.model';
 
@@ -16,7 +21,7 @@ import { TargetType } from './target-type.model';
   providedIn: 'root',
 })
 export class MissionService {
-  private readonly _destroyedPrimaryTargetIds: string[] = [];
+  private _destroyedPrimaryTargetIds: string[] = [];
 
   private readonly _mission: WritableSignal<Mission | undefined> =
     signal(undefined);
@@ -29,6 +34,32 @@ export class MissionService {
 
   get missionsHistory(): Mission[] {
     return this._missionsHistory;
+  }
+
+  get _bosses(): Target[] {
+    return this._gameService.isRuPlayerSide() ? BOSSES_RU : BOSSES_US;
+  }
+
+  get _player(): Target {
+    return this._gameService.isRuPlayerSide() ? PLAYER_RU : PLAYER_US;
+  }
+
+  get _playerSquaresIndexes(): number[] {
+    return this._gameService.isRuPlayerSide()
+      ? PLAYER_SQUARES_INDEXES_RU
+      : PLAYER_SQUARES_INDEXES_US;
+  }
+
+  get _primaryTargets(): Target[] {
+    return this._gameService.isRuPlayerSide()
+      ? PRIMARY_TARGETS_RU
+      : PRIMARY_TARGETS_US;
+  }
+
+  get _secondaryTargets(): Target[] {
+    return this._gameService.isRuPlayerSide()
+      ? SECONDARY_TARGETS_RU
+      : SECONDARY_TARGETS_US;
   }
 
   constructor(private readonly _gameService: GameService) {}
@@ -92,7 +123,7 @@ export class MissionService {
   }
 
   private _getBoss(tier = 1): Target {
-    const targets: Target[] = BOSSES.filter(
+    const targets: Target[] = this._bosses.filter(
       (target: Target) => target.tier === tier,
     );
 
@@ -105,7 +136,7 @@ export class MissionService {
   }
 
   private _getPlayer(): Target {
-    const player: Target = structuredClone(PLAYER);
+    const player: Target = structuredClone(this._player);
 
     player.squareIndex = this._getRandomSquareIndex(player.type);
 
@@ -113,9 +144,14 @@ export class MissionService {
   }
 
   private _getPrimaryTarget(): Target {
-    const primaryTargets: Target[] = PRIMARY_TARGETS.filter(
+    let primaryTargets: Target[] = this._primaryTargets.filter(
       (target: Target) => !this._destroyedPrimaryTargetIds.includes(target.id),
     );
+
+    if (!primaryTargets.length) {
+      primaryTargets = this._primaryTargets;
+      this._destroyedPrimaryTargetIds = [];
+    }
 
     const random = Math.floor(Math.random() * primaryTargets.length);
     const target: Target = structuredClone(primaryTargets[random]);
@@ -170,9 +206,11 @@ export class MissionService {
   }
 
   private _getRandomPlayerSquareIndex(): number {
-    const random = Math.floor(Math.random() * PLAYER_SQUARES_INDEXES.length);
+    const random = Math.floor(
+      Math.random() * this._playerSquaresIndexes.length,
+    );
 
-    return PLAYER_SQUARES_INDEXES[random];
+    return this._playerSquaresIndexes[random];
   }
 
   private _getRandomSeaSquareIndex(): number {
@@ -182,8 +220,8 @@ export class MissionService {
   }
 
   private _getSecondaryTarget(): Target {
-    const random = Math.floor(Math.random() * SECONDARY_TARGETS.length);
-    const target: Target = structuredClone(SECONDARY_TARGETS[random]);
+    const random = Math.floor(Math.random() * this._secondaryTargets.length);
+    const target: Target = structuredClone(this._secondaryTargets[random]);
 
     target.squareIndex = this._getRandomSquareIndex(target.type);
 

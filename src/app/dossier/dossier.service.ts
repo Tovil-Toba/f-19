@@ -1,5 +1,6 @@
 import { Injectable, Signal } from '@angular/core';
 
+import { FaceService } from '../face/face.service';
 import { GameService } from '../game/game.service';
 import { MissionService } from '../mission/mission.service';
 import { RewardService } from '../reward/reward.service';
@@ -13,9 +14,6 @@ import { LAST_NAMES_US } from './last-names-us';
   providedIn: 'root',
 })
 export class DossierService {
-  private _firstNames: string[] = [];
-  private _lastNames: string[] = [];
-
   private _firstName = '';
   private _lastName = '';
 
@@ -33,7 +31,16 @@ export class DossierService {
     return this._lastName;
   }
 
+  get _firstNames(): string[] {
+    return this._gameService.isRuPlayerSide() ? FIRST_NAMES_RU : FIRST_NAMES_US;
+  }
+
+  get _lastNames(): string[] {
+    return this._gameService.isRuPlayerSide() ? LAST_NAMES_RU : LAST_NAMES_US;
+  }
+
   constructor(
+    private readonly _faceService: FaceService,
     private readonly _gameService: GameService,
     private readonly _missionService: MissionService,
     private readonly _rewardService: RewardService,
@@ -78,19 +85,9 @@ export class DossierService {
   }
 
   reset(): void {
-    switch (this._gameService.playerSide()) {
-      case 'ru':
-        this._firstNames = FIRST_NAMES_RU;
-        this._lastNames = LAST_NAMES_RU;
-        break;
-      case 'us':
-      default:
-        this._firstNames = FIRST_NAMES_US;
-        this._lastNames = LAST_NAMES_US;
-        break;
-    }
-
     this._firstName = this.getRandomFirstName();
     this._lastName = this.getRandomLastName();
+
+    this._faceService.reset();
   }
 }

@@ -1,6 +1,6 @@
 import { SelectItemGroup } from 'primeng/api';
 
-export const WEAPONS: SelectItemGroup[] = [
+export const WEAPONS_US: SelectItemGroup[] = [
   {
     label: 'Воздух-воздух',
     items: [

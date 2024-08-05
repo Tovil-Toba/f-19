@@ -9,8 +9,10 @@ import { SelectItemGroup } from 'primeng/api';
 import { SelectItem } from 'primeng/api/selectitem';
 import { DropdownModule } from 'primeng/dropdown';
 
+import { GameService } from '../game/game.service';
 import { WeaponType } from './weapon-type.model';
-import { WEAPONS } from './weapons';
+import { WEAPONS_RU } from './weapons-ru';
+import { WEAPONS_US } from './weapons-us';
 
 @Component({
   selector: 'app-weapons-bay',
@@ -26,8 +28,13 @@ export class WeaponsBayComponent implements OnInit {
   @Input()
   upgradedWeaponNames?: Set<string>;
 
-  weapons: SelectItemGroup[] = WEAPONS;
   selectedWeapon?: SelectItem;
+
+  get weapons(): SelectItemGroup[] {
+    return this._gameService.isRuPlayerSide() ? WEAPONS_RU : WEAPONS_US;
+  }
+
+  constructor(private readonly _gameService: GameService) {}
 
   ngOnInit(): void {
     this._selectDefaultWeapon();
@@ -38,7 +45,7 @@ export class WeaponsBayComponent implements OnInit {
       return;
     }
 
-    for (const weapon of WEAPONS) {
+    for (const weapon of this.weapons) {
       const selectedWeapon = weapon.items.find(
         (item) => item.value === this.defaultWeaponType,
       );

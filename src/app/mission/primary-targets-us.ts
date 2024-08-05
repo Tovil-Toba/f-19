@@ -1,6 +1,6 @@
 import { Target } from './target.model';
 
-export const PRIMARY_TARGETS: Target[] = [
+export const PRIMARY_TARGETS_US: Target[] = [
   // Воздушные цели
   {
     id: 'airliner',

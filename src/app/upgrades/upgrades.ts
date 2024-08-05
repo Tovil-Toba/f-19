@@ -179,7 +179,7 @@ export const UPGRADES: Upgrade[] = [
   {
     group: 'weapon',
     playerSide: 'ru',
-    icon: 'fa-regular fa-bow-arrow',
+    icon: 'fa-solid fa-bow-arrow',
     name: 'Р-73 (AA-11 Archer)',
     description: '',
     tier: 1,

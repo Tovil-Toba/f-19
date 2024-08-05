@@ -1,6 +1,6 @@
 import { Target } from './target.model';
 
-export const SECONDARY_TARGETS: Target[] = [
+export const SECONDARY_TARGETS_US: Target[] = [
   // Воздушные цели
   {
     id: 'fighter',
