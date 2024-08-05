@@ -9,6 +9,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
+import { HeaderService } from '../header/header.service';
 import { RewardService } from '../reward/reward.service';
 import { Upgrade } from '../upgrade/upgrade.model';
 import { UpgradesComponent } from '../upgrades/upgrades.component';
@@ -23,19 +24,21 @@ import { StoreService } from './store.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StoreComponent {
-  shoppingCompleted: OutputEmitterRef<void> = output<void>();
+  shoppingComplete: OutputEmitterRef<void> = output<void>();
+  upgradeBuy: OutputEmitterRef<void> = output<void>();
 
   readonly randomUpgrades: Upgrade[] = this._storeService.randomUpgrades;
   readonly wallet: Signal<number> = this._rewardService.wallet;
 
   constructor(
     private readonly _confirmationService: ConfirmationService,
+    private readonly _headerService: HeaderService,
     private readonly _rewardService: RewardService,
     private readonly _storeService: StoreService,
   ) {}
 
-  onShoppingCompleted(): void {
-    this.shoppingCompleted.emit();
+  onShoppingComplete(): void {
+    this.shoppingComplete.emit();
   }
 
   onUpgradeClick(upgrade: Upgrade): void {
@@ -61,5 +64,6 @@ export class StoreComponent {
 
     this._rewardService.takeMoney(price);
     this._rewardService.selectedUpgrades.add(upgrade);
+    this.upgradeBuy.emit();
   }
 }

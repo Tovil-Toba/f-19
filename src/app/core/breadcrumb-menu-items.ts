@@ -1,6 +1,6 @@
 import { MenuItem } from 'primeng/api';
 
-import { MENU_ITEMS } from './menu-items';
+import { MENU_ITEMS } from '../header/menu-items';
 
 export const BREADCRUMB_MENU_ITEMS: MenuItem[] = [
   ...MENU_ITEMS,

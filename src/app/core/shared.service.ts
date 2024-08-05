@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { DossierService } from '../dossier/dossier.service';
 import { GameService } from '../game/game.service';
+import { HeaderService } from '../header/header.service';
 import { MissionService } from '../mission/mission.service';
 import { RewardService } from '../reward/reward.service';
 import { StoreService } from '../store/store.service';
@@ -14,6 +15,7 @@ export class SharedService {
   constructor(
     private readonly _dossierService: DossierService,
     private readonly _gameService: GameService,
+    private readonly _headerService: HeaderService,
     private readonly _missionService: MissionService,
     private readonly _rewardService: RewardService,
     private readonly _router: Router,
@@ -26,6 +28,7 @@ export class SharedService {
     this._rewardService.reset();
     this._storeService.reset();
     this._dossierService.reset();
+    this._headerService.reset();
 
     this._router.navigate(['/']);
   }

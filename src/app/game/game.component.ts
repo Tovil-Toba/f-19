@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 import { ArmamentComponent } from '../armament/armament.component';
 import { GameOverComponent } from '../game-over/game-over.component';
 import { GameStartComponent } from '../game-start/game-start.component';
+import { HeaderService } from '../header/header.service';
 import { MissionComponent } from '../mission/mission.component';
 import { MissionResultComponent } from '../mission-result/mission-result.component';
 import { RewardComponent } from '../reward/reward.component';
@@ -34,14 +35,16 @@ export class GameComponent {
   readonly isGameOver: Signal<boolean> = this._gameService.isGameOver;
 
   isMissionConfirmed = false;
-  selectedUpgrade?: Upgrade;
 
   constructor(
     private readonly _gameService: GameService,
+    private readonly _headerService: HeaderService,
     private readonly _rewardService: RewardService,
   ) {}
 
   onArmamentSelect(): void {
+    this._headerService.setBadge('missions-history');
+    this._headerService.setBadge('dossier');
     this._gameService.nextGameStep();
   }
 
@@ -49,20 +52,28 @@ export class GameComponent {
     this._gameService.startGame();
   }
 
+  onMissionComplete(): void {
+    this._gameService.nextGameStep();
+  }
+
   onMissionConfirm(): void {
     this.isMissionConfirmed = true;
     this._gameService.nextGameStep();
   }
 
-  onShoppingCompleted(): void {
+  onShoppingComplete(): void {
     this._gameService.nextGameStep();
   }
 
-  onUpgradeSelect(upgrade?: Upgrade): void {
-    this.selectedUpgrade = upgrade;
+  onUpgradeBuy(): void {
+    this._headerService.setBadge('upgrades');
+    this._headerService.setBadge('dossier');
+  }
 
+  onUpgradeSelect(upgrade?: Upgrade): void {
     if (upgrade) {
       this._rewardService.selectedUpgrades.add(upgrade);
+      this._headerService.setBadge('upgrades');
     }
 
     this._gameService.nextGameStep();

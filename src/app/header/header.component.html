@@ -1,4 +1,4 @@
-<p-menubar [model]="menuItems" class="block">
+<p-menubar [model]="(menuItems$ | async)!" class="block">
   <ng-template pTemplate="item" let-item>
     @if (item.route) {
       <a [routerLink]="item.route" class="p-menuitem-link">
@@ -13,7 +13,14 @@
         } @else {
           <span [class]="item.icon"></span>
         }
-        <span class="ml-2">{{ item.label }}</span>
+        <span
+          class="ml-2"
+          pBadge
+          styleClass="ml-3"
+          [badgeDisabled]="!item.badge"
+          severity="danger"
+          >{{ item.label }}</span
+        >
       </a>
     } @else {
       @if (item.url) {

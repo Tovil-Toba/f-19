@@ -7,7 +7,10 @@
       <app-reward (upgradeSelect)="onUpgradeSelect($event)" />
     }
     @case ("store") {
-      <app-store (shoppingCompleted)="onShoppingCompleted()" />
+      <app-store
+        (shoppingComplete)="onShoppingComplete()"
+        (upgradeBuy)="onUpgradeBuy()"
+      />
     }
     @case ("mission") {
       <app-mission (missionConfirm)="onMissionConfirm()" />
@@ -16,7 +19,7 @@
       <app-armament (armamentSelect)="onArmamentSelect()" />
     }
     @case ("mission-result") {
-      <app-mission-result />
+      <app-mission-result (missionComplete)="onMissionComplete()" />
     }
     @default {
       <app-game-start (gameStart)="onGameStart()" />
