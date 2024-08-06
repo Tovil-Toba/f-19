@@ -18,7 +18,10 @@
         <span class="white-space-nowrap">
           <i class="fa-solid fa-star"></i> Босс:
         </span>
-        <span class="font-medium text-red-600">{{ mission?.boss?.label }}</span>
+        <span class="font-medium text-red-600">
+          <i [class]="mission?.boss?.icon"></i>
+          {{ mission?.boss?.label }}
+        </span>
       </p>
     }
 
@@ -27,7 +30,7 @@
         <span class="white-space-nowrap">
           <i class="fa-regular fa-crosshairs-simple"></i> Основная цель:
         </span>
-        <span class="font-medium white-space-nowrap text-red-600">
+        <span class="font-medium text-red-600">
           <i [class]="mission?.primaryTarget?.icon"></i>
           {{ mission?.primaryTarget?.label }}
           {{
@@ -44,7 +47,7 @@
         <span class="white-space-nowrap">
           <i class="fa-regular fa-circle-dot"></i> Дополнительная цель:
         </span>
-        <span class="font-medium white-space-nowrap text-orange-600">
+        <span class="font-medium text-orange-600">
           <i [class]="mission?.secondaryTarget?.icon"></i>
           {{ mission?.secondaryTarget?.label }}
           {{

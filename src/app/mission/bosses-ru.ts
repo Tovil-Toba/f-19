@@ -21,7 +21,7 @@ export const BOSSES_RU: Target[] = [
   // Эпизод 2
   {
     id: 'aew',
-    icon: 'fa-solid fa-plane-engines',
+    icon: 'fa-solid fa-plane-prop',
     label: 'ДРЛО E-2',
     type: 'air',
     tier: 2,
