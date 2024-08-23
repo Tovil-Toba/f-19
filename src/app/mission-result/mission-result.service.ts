@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 import { GameService } from '../game/game.service';
@@ -14,12 +14,10 @@ import { RewardService } from '../reward/reward.service';
 
 @Injectable()
 export class MissionResultService {
-  constructor(
-    private readonly _gameService: GameService,
-    private readonly _messageService: MessageService,
-    private readonly _missionService: MissionService,
-    private readonly _rewardService: RewardService,
-  ) {}
+  private readonly _gameService = inject(GameService);
+  private readonly _messageService = inject(MessageService);
+  private readonly _missionService = inject(MissionService);
+  private readonly _rewardService = inject(RewardService);
 
   completeMission(mission: Mission | undefined): void {
     if (!mission || mission?.isCompleted) {

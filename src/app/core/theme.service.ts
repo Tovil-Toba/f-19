@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import {
-  Inject,
+  inject,
   Injectable,
   Signal,
   signal,
@@ -12,19 +12,15 @@ import { LocalStorageService } from 'ngx-webstorage';
   providedIn: 'root',
 })
 export class ThemeService {
+  private readonly _document = inject(DOCUMENT);
+  private readonly _localStorageService = inject(LocalStorageService);
+
   private readonly _darkThemeBundleName = 'mdc-dark-indigo';
   private readonly _lightThemeBundleName = 'mdc-light-indigo';
-  private readonly _window: (Window & typeof globalThis) | null;
+  private readonly _window = this._document.defaultView;
   private _isDarkTheme: WritableSignal<boolean> = signal(false);
 
   readonly isDarkTheme: Signal<boolean> = this._isDarkTheme;
-
-  constructor(
-    @Inject(DOCUMENT) private readonly _document: Document,
-    private readonly _localStorageService: LocalStorageService,
-  ) {
-    this._window = this._document.defaultView;
-  }
 
   initTheme(): void {
     let isDarkTheme: unknown =

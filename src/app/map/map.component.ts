@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Input,
   Signal,
 } from '@angular/core';
@@ -17,6 +18,8 @@ import { AVAILABLE_SQUARES_INDEXES } from './available-squares-indexes';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent {
+  private readonly _gameService = inject(GameService);
+
   @Input()
   isAvailableSquaresHighlighted = false;
 
@@ -34,6 +37,4 @@ export class MapComponent {
   readonly isUsPlayerSide: Signal<boolean> = this._gameService.isUsPlayerSide;
   readonly squaresCount = 100;
   readonly squaresIndexes: number[] = [...Array(this.squaresCount).keys()];
-
-  constructor(private readonly _gameService: GameService) {}
 }

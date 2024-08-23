@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DossierService } from '../dossier/dossier.service';
@@ -12,15 +12,13 @@ import { StoreService } from '../store/store.service';
   providedIn: 'root',
 })
 export class SharedService {
-  constructor(
-    private readonly _dossierService: DossierService,
-    private readonly _gameService: GameService,
-    private readonly _headerService: HeaderService,
-    private readonly _missionService: MissionService,
-    private readonly _rewardService: RewardService,
-    private readonly _router: Router,
-    private readonly _storeService: StoreService,
-  ) {}
+  private readonly _dossierService = inject(DossierService);
+  private readonly _gameService = inject(GameService);
+  private readonly _headerService = inject(HeaderService);
+  private readonly _missionService = inject(MissionService);
+  private readonly _rewardService = inject(RewardService);
+  private readonly _router = inject(Router);
+  private readonly _storeService = inject(StoreService);
 
   resetGame(): void {
     this._gameService.reset();
@@ -30,6 +28,6 @@ export class SharedService {
     this._dossierService.reset();
     this._headerService.reset();
 
-    this._router.navigate(['/']);
+    void this._router.navigate(['/']);
   }
 }

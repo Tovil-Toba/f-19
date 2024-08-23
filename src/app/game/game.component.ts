@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Signal,
+} from '@angular/core';
 
 import { ArmamentComponent } from '../armament/armament.component';
 import { GameOverComponent } from '../game-over/game-over.component';
@@ -31,16 +36,14 @@ import { GameStep } from './game-step.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameComponent {
+  private readonly _gameService = inject(GameService);
+  private readonly _headerService = inject(HeaderService);
+  private readonly _rewardService = inject(RewardService);
+
   readonly gameStep: Signal<GameStep | undefined> = this._gameService.gameStep;
   readonly isGameOver: Signal<boolean> = this._gameService.isGameOver;
 
   isMissionConfirmed = false;
-
-  constructor(
-    private readonly _gameService: GameService,
-    private readonly _headerService: HeaderService,
-    private readonly _rewardService: RewardService,
-  ) {}
 
   onArmamentSelect(): void {
     this._headerService.setBadge('missions-history');

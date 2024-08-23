@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
+  OnInit,
   output,
   OutputEmitterRef,
 } from '@angular/core';
@@ -19,13 +21,15 @@ import { MissionService } from './mission.service';
   templateUrl: './mission.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MissionComponent {
+export class MissionComponent implements OnInit {
+  private readonly _missionService = inject(MissionService);
+
   missionConfirm: OutputEmitterRef<void> = output<void>();
 
   isMapGridEnabled = true;
   mission?: Mission;
 
-  constructor(private readonly _missionService: MissionService) {
+  ngOnInit(): void {
     this._missionService.init();
 
     this.mission = this._missionService.mission();

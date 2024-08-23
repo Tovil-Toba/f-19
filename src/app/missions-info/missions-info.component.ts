@@ -1,5 +1,10 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Signal,
+} from '@angular/core';
 
 import { ThemeService } from '../core/theme.service';
 import { GameService } from '../game/game.service';
@@ -13,6 +18,9 @@ import { MAX_MISSION_TIER, TOTAL_MISSIONS_COUNT } from '../game/game-settings';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MissionsInfoComponent {
+  private readonly _gameService = inject(GameService);
+  private readonly _themeService = inject(ThemeService);
+
   readonly currentMissionNumber: Signal<number> =
     this._gameService.currentMissionNumber;
 
@@ -26,9 +34,4 @@ export class MissionsInfoComponent {
   readonly isDarkTheme: Signal<boolean> = this._themeService.isDarkTheme;
   readonly maxMissionTier = MAX_MISSION_TIER;
   readonly totalMissionsCount = TOTAL_MISSIONS_COUNT;
-
-  constructor(
-    private readonly _gameService: GameService,
-    private readonly _themeService: ThemeService,
-  ) {}
 }

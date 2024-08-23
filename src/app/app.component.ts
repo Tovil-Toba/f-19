@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   OnInit,
   Signal,
 } from '@angular/core';
@@ -36,15 +37,13 @@ import { MissionsInfoComponent } from './missions-info/missions-info.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
+  private readonly _gameService = inject(GameService);
+  private readonly _primengConfig = inject(PrimeNGConfig);
+  private readonly _themeService = inject(ThemeService);
+
   readonly isDarkTheme: Signal<boolean> = this._themeService.isDarkTheme;
   readonly isGameOver: Signal<boolean> = this._gameService.isGameOver;
   readonly isGameStarted: Signal<boolean> = this._gameService.isGameStarted;
-
-  constructor(
-    private readonly _gameService: GameService,
-    private readonly _primengConfig: PrimeNGConfig,
-    private readonly _themeService: ThemeService,
-  ) {}
 
   ngOnInit(): void {
     this._primengConfig.ripple = true;

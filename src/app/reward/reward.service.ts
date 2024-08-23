@@ -1,4 +1,10 @@
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import {
+  inject,
+  Injectable,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 
 import { GameService } from '../game/game.service';
 import { WALLET } from '../game/game-settings';
@@ -11,6 +17,8 @@ import { UpgradeGroup } from '../upgrades-group/upgrade-group.model';
   providedIn: 'root',
 })
 export class RewardService {
+  private readonly _gameService = inject(GameService);
+
   private readonly _randomUpgradesHistory: Map<number, Upgrade[]> = new Map<
     number,
     Upgrade[]
@@ -34,8 +42,6 @@ export class RewardService {
 
     return randomUpgrades;
   }
-
-  constructor(private readonly _gameService: GameService) {}
 
   getRandomUpgrades(maxTier = 1): Upgrade[] {
     const randomUpgrades: Upgrade[] = [];

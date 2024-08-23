@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   output,
   OutputEmitterRef,
   Signal,
@@ -24,18 +25,16 @@ import { StoreService } from './store.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StoreComponent {
+  private readonly _confirmationService = inject(ConfirmationService);
+  private readonly _headerService = inject(HeaderService);
+  private readonly _rewardService = inject(RewardService);
+  private readonly _storeService = inject(StoreService);
+
   shoppingComplete: OutputEmitterRef<void> = output<void>();
   upgradeBuy: OutputEmitterRef<void> = output<void>();
 
   readonly randomUpgrades: Upgrade[] = this._storeService.randomUpgrades;
   readonly wallet: Signal<number> = this._rewardService.wallet;
-
-  constructor(
-    private readonly _confirmationService: ConfirmationService,
-    private readonly _headerService: HeaderService,
-    private readonly _rewardService: RewardService,
-    private readonly _storeService: StoreService,
-  ) {}
 
   onShoppingComplete(): void {
     this.shoppingComplete.emit();

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Input,
   OnInit,
   output,
@@ -19,6 +20,8 @@ import { UpgradesGroupComponent } from '../upgrades-group/upgrades-group.compone
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpgradesComponent implements OnInit {
+  private readonly _headerService = inject(HeaderService);
+
   @Input()
   isStore = false;
 
@@ -30,8 +33,6 @@ export class UpgradesComponent implements OnInit {
 
   selectedUpgrade?: Upgrade;
   upgradeClick: OutputEmitterRef<Upgrade> = output<Upgrade>();
-
-  constructor(private readonly _headerService: HeaderService) {}
 
   ngOnInit(): void {
     if (!this.upgrades) {

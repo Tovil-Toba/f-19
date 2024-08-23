@@ -19,8 +19,6 @@ export class HeaderService {
   readonly menuItems: Signal<MenuItem[]> = this._menuItems;
   readonly menuItems$: Observable<MenuItem[]> = this._menuItems$.asObservable();
 
-  constructor() {}
-
   clearBadge(menuItemId: BadgeMenuItemId): void {
     this._setBadge(menuItemId, undefined);
   }

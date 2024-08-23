@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
+  OnInit,
   output,
   OutputEmitterRef,
 } from '@angular/core';
@@ -23,7 +25,11 @@ import { WeaponsBayComponent } from '../weapons-bay/weapons-bay.component';
   templateUrl: './armament.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArmamentComponent {
+export class ArmamentComponent implements OnInit {
+  private readonly _gameService = inject(GameService);
+  private readonly _missionService = inject(MissionService);
+  private readonly _rewardService = inject(RewardService);
+
   armamentSelect: OutputEmitterRef<void> = output<void>();
 
   readonly defaultWeaponTypes: (WeaponType | undefined)[] = [
@@ -47,11 +53,7 @@ export class ArmamentComponent {
       : 'AIM-9 Sidewinder';
   }
 
-  constructor(
-    private readonly _gameService: GameService,
-    private readonly _missionService: MissionService,
-    private readonly _rewardService: RewardService,
-  ) {
+  ngOnInit(): void {
     this._initDefaultWeaponTypes();
     this._initUpgradedWeaponNames();
   }

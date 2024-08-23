@@ -1,4 +1,4 @@
-import { Injectable, Signal } from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 
 import { FaceService } from '../face/face.service';
 import { GameService } from '../game/game.service';
@@ -14,6 +14,11 @@ import { LAST_NAMES_US } from './last-names-us';
   providedIn: 'root',
 })
 export class DossierService {
+  private readonly _faceService = inject(FaceService);
+  private readonly _gameService = inject(GameService);
+  private readonly _missionService = inject(MissionService);
+  private readonly _rewardService = inject(RewardService);
+
   private _firstName = '';
   private _lastName = '';
 
@@ -39,12 +44,7 @@ export class DossierService {
     return this._gameService.isRuPlayerSide() ? LAST_NAMES_RU : LAST_NAMES_US;
   }
 
-  constructor(
-    private readonly _faceService: FaceService,
-    private readonly _gameService: GameService,
-    private readonly _missionService: MissionService,
-    private readonly _rewardService: RewardService,
-  ) {
+  constructor() {
     this.reset();
   }
 

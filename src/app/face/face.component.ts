@@ -1,5 +1,10 @@
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Input,
+} from '@angular/core';
 
 import { EyesColor } from './eyes-color.model';
 import { FaceService } from './face.service';
@@ -17,6 +22,8 @@ import { SkinType } from './skin-type.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FaceComponent {
+  private readonly _faceService = inject(FaceService);
+
   @Input()
   eyesColor: EyesColor = this._faceService.getRandomEyesColor();
 
@@ -31,6 +38,4 @@ export class FaceComponent {
 
   @Input()
   skinType: SkinType = this._faceService.getRandomSkinType();
-
-  constructor(private readonly _faceService: FaceService) {}
 }

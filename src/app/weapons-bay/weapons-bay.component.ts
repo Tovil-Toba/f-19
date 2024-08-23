@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Input,
   OnInit,
 } from '@angular/core';
@@ -22,6 +23,8 @@ import { WEAPONS_US } from './weapons-us';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeaponsBayComponent implements OnInit {
+  private readonly _gameService = inject(GameService);
+
   @Input()
   defaultWeaponType?: WeaponType;
 
@@ -33,8 +36,6 @@ export class WeaponsBayComponent implements OnInit {
   get weapons(): SelectItemGroup[] {
     return this._gameService.isRuPlayerSide() ? WEAPONS_RU : WEAPONS_US;
   }
-
-  constructor(private readonly _gameService: GameService) {}
 
   ngOnInit(): void {
     this._selectDefaultWeapon();

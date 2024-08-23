@@ -1,4 +1,10 @@
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import {
+  inject,
+  Injectable,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 
 import { GameService } from '../game/game.service';
 import { LAND_SQUARES_INDEXES } from '../map/land-squares-indexes';
@@ -21,6 +27,8 @@ import { TargetType } from './target-type.model';
   providedIn: 'root',
 })
 export class MissionService {
+  private readonly _gameService = inject(GameService);
+
   private _destroyedPrimaryTargetIds: string[] = [];
 
   private readonly _mission: WritableSignal<Mission | undefined> =
@@ -61,8 +69,6 @@ export class MissionService {
       ? SECONDARY_TARGETS_RU
       : SECONDARY_TARGETS_US;
   }
-
-  constructor(private readonly _gameService: GameService) {}
 
   init(): void {
     const currentMissionNumber = this._gameService.currentMissionNumber();

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   output,
   OutputEmitterRef,
 } from '@angular/core';
@@ -19,14 +20,14 @@ import { RewardService } from './reward.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RewardComponent {
+  private readonly _rewardService = inject(RewardService);
+
   upgradeSelect: OutputEmitterRef<Upgrade | undefined> = output<
     Upgrade | undefined
   >();
 
   randomUpgrades: Upgrade[] = this._rewardService.randomUpgrades;
   selectedUpgrade?: Upgrade;
-
-  constructor(private readonly _rewardService: RewardService) {}
 
   onUpgradeSelect(): void {
     this.upgradeSelect.emit(this.selectedUpgrade);

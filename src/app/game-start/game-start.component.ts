@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   output,
   OutputEmitterRef,
   Signal,
@@ -20,15 +21,13 @@ import { PlayerSide } from '../game/player-side.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameStartComponent {
+  private readonly _dossierService = inject(DossierService);
+  private readonly _gameService = inject(GameService);
+
   gameStart: OutputEmitterRef<void> = output<void>();
 
   readonly isRuPlayerSide: Signal<boolean> = this._gameService.isRuPlayerSide;
   readonly isUsPlayerSide: Signal<boolean> = this._gameService.isUsPlayerSide;
-
-  constructor(
-    private readonly _dossierService: DossierService,
-    private readonly _gameService: GameService,
-  ) {}
 
   onGameStart(): void {
     this.gameStart.emit();

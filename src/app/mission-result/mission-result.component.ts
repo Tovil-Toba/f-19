@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   OnInit,
   output,
   OutputEmitterRef,
@@ -22,14 +23,12 @@ import { MissionResultService } from './mission-result.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MissionResultComponent implements OnInit {
+  private readonly _missionService = inject(MissionService);
+  private readonly _missionResultService = inject(MissionResultService);
+
   missionComplete: OutputEmitterRef<void> = output<void>();
 
   readonly mission: Signal<Mission | undefined> = this._missionService.mission;
-
-  constructor(
-    private readonly _missionService: MissionService,
-    private readonly _missionResultService: MissionResultService,
-  ) {}
 
   ngOnInit(): void {
     this._missionResultService.completeMission(this.mission());

@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   OnInit,
   Signal,
 } from '@angular/core';
@@ -32,18 +33,16 @@ import { HeaderService } from './header.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
+  private readonly _confirmationService = inject(ConfirmationService);
+  private readonly _gameService = inject(GameService);
+  private readonly _headerService = inject(HeaderService);
+  private readonly _sharedService = inject(SharedService);
+  private readonly _themeService = inject(ThemeService);
+
   readonly isRuPlayerSide: Signal<boolean> = this._gameService.isRuPlayerSide;
   readonly isUsPlayerSide: Signal<boolean> = this._gameService.isUsPlayerSide;
   readonly isDarkTheme: Signal<boolean> = this._themeService.isDarkTheme;
   readonly menuItems$: Observable<MenuItem[]> = this._headerService.menuItems$;
-
-  constructor(
-    private readonly _confirmationService: ConfirmationService,
-    private readonly _gameService: GameService,
-    private readonly _headerService: HeaderService,
-    private readonly _sharedService: SharedService,
-    private readonly _themeService: ThemeService,
-  ) {}
 
   confirmGameReset(event: Event): void {
     this._confirmationService.confirm({

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { DividerModule } from 'primeng/divider';
 
 import { HeaderService } from '../header/header.service';
@@ -14,14 +19,12 @@ import { MissionInfoComponent } from '../mission-info/mission-info.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MissionsHistoryComponent implements OnInit {
+  private readonly _headerService = inject(HeaderService);
+  private readonly _missionService = inject(MissionService);
+
   missionsHistory: Mission[] = structuredClone(
     this._missionService.missionsHistory,
   ).reverse();
-
-  constructor(
-    private readonly _headerService: HeaderService,
-    private readonly _missionService: MissionService,
-  ) {}
 
   ngOnInit(): void {
     this._headerService.clearBadge('missions-history');

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Input,
   OnInit,
   output,
@@ -26,6 +27,10 @@ import { UPGRADE_GROUP_TITLE } from './upgrade-group-title';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpgradesGroupComponent implements OnInit {
+  private readonly _gameService = inject(GameService);
+  private readonly _rewardService = inject(RewardService);
+  private readonly _storeService = inject(StoreService);
+
   @Input({ required: true })
   group!: UpgradeGroup;
 
@@ -45,12 +50,6 @@ export class UpgradesGroupComponent implements OnInit {
   title = '';
   upgradeClick: OutputEmitterRef<Upgrade> = output<Upgrade>();
   readonly wallet: Signal<number> = this._rewardService.wallet;
-
-  constructor(
-    private readonly _gameService: GameService,
-    private readonly _rewardService: RewardService,
-    private readonly _storeService: StoreService,
-  ) {}
 
   isEnoughMoney(upgrade: Upgrade): boolean {
     const price = this._storeService.getUpgradePrice(upgrade);

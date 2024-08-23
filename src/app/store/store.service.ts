@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { GameService } from '../game/game.service';
 import { UPGRADE_DISCOUNT_PERCENTS } from '../game/game-settings';
@@ -9,6 +9,9 @@ import { Upgrade } from '../upgrade/upgrade.model';
   providedIn: 'root',
 })
 export class StoreService {
+  private readonly _gameService = inject(GameService);
+  private readonly _rewardService = inject(RewardService);
+
   private readonly _randomUpgradesHistory: Map<number, Upgrade[]> = new Map<
     number,
     Upgrade[]
@@ -29,11 +32,6 @@ export class StoreService {
 
     return randomUpgrades;
   }
-
-  constructor(
-    private readonly _gameService: GameService,
-    private readonly _rewardService: RewardService,
-  ) {}
 
   getUpgradePrice(upgrade: Upgrade): number {
     return upgrade.discountPercents
