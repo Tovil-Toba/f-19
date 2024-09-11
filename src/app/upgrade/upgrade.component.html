@@ -9,6 +9,9 @@
   [class.border-green-500]="isActive && isSelected && upgrade.tier === 1"
   [class.border-orange-500]="isActive && isSelected && upgrade.tier === 2"
   [class.border-red-500]="isActive && isSelected && upgrade.tier === 3"
+  [pTooltip]="upgrade.description"
+  tooltipPosition="bottom"
+  tooltipStyleClass="upgrade-tooltip"
   (click)="onClick()"
 >
   <div

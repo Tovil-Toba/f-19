@@ -6,14 +6,16 @@ import {
   OutputEmitterRef,
 } from '@angular/core';
 import { TagModule } from 'primeng/tag';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { Upgrade } from './upgrade.model';
 
 @Component({
   selector: 'app-upgrade',
   standalone: true,
-  imports: [TagModule],
+  imports: [TagModule, TooltipModule],
   templateUrl: './upgrade.component.html',
+  styleUrl: './upgrade.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpgradeComponent {
